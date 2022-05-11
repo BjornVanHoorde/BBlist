@@ -180,6 +180,19 @@ header img:hover {
 .field input:focus {
   outline: 3px solid #FF8E3C;
 }
+.field input[type=file] {
+  border: none;
+}
+.field textarea {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid #707070;
+  resize: none;
+  padding: 0.5rem 1rem;
+}
+.field textarea:focus {
+  outline: 3px solid #FF8E3C;
+}
 
 .field ~ .field {
   margin-top: 1rem;
