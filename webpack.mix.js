@@ -11,10 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
- mix.browserSync('http://127.0.0.1:8000/')
-
-//bundle js
-mix.js('resources/js/app.js', 'public/js').sourceMaps().version();
-
-//bundle sass/css
-mix.sass('resources/sass/main.scss', 'public/css/app.css').sourceMaps().version();
+mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
+    require('postcss-import'),
+    require('tailwindcss'),
+    require('autoprefixer'),
+]);
