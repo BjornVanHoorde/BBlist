@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('gender');
             $table->string('password');
             $table->string('slug');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
