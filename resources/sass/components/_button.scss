@@ -1,0 +1,121 @@
+/*
+*   Buttons
+*/
+
+@use '../abstracts/variables' as vars;
+@use '../abstracts/extends';
+@use 'sass:map';
+
+.button {
+
+    margin-top: 2rem;
+
+    button {
+        background-color: vars.$button-color;
+        border-radius: vars.$border-radius;
+        border: none;
+        width: 100%;
+        font-size: map.get($map: vars.$typography, $key: h3);
+        cursor: pointer;
+        text-transform: uppercase;
+        padding: 0.25rem 0;
+        box-shadow: 3px 3px 6px vars.$shadow-color;
+
+        &:hover {
+            filter: opacity(0.75);
+        }
+    }
+}
+
+.menu-button {
+
+    a {
+        display: block;
+        text-decoration: none;
+        color: vars.$font-color;
+        text-align: center;
+
+        @extend %menu-button;
+
+        &:hover {
+            background-color: vars.$button-color;
+        }
+    }
+
+    button {
+        @extend %menu-button;
+        cursor: pointer;
+
+        &:hover {
+            background-color: vars.$button-color;
+        }
+    }
+
+    &:last-child {
+        button {
+            border-bottom: 3px solid vars.$black;
+        }
+    }
+}
+
+.shop-button {
+    a {
+        display: block;
+        width: 100%;
+        background-image: url('../../../public/assets/shop.jpg');
+        background-size: cover;
+        height: 240px;
+        border-radius: vars.$border-radius;
+        border: 5px solid vars.$highlight-color;
+
+        color: vars.$font-color;
+        text-decoration: none;
+        font-size: map.get($map: vars.$typography, $key: h1);
+        text-transform: uppercase;
+        padding-left: 1rem;
+
+        &:hover {
+            filter: opacity(0.75);
+        }
+    }
+}
+
+.list {
+    a {
+        position: absolute;
+        color: vars.$font-color;
+        text-decoration: none;
+        font-size: map.get($map: vars.$typography, $key: h3);
+        padding-left: 0.8rem;
+    }
+
+    &.boy {
+        a {
+            img {
+                border: 5px solid vars.$boy-dark-color;
+                // filter: blur(1px);
+                border-radius: 1rem;
+            }
+        }
+    }
+
+    &.girl {
+        a {
+            img {
+                border: 5px solid vars.$girl-dark-color;
+                // filter: blur(1px);
+                border-radius: 1rem;
+            }
+        }
+    }
+
+    &.neutral {
+        a {
+            img {
+                border: 5px solid vars.$neutral-dark-color;
+                // filter: blur(1px);
+                border-radius: 1rem;
+            }
+        }
+    }
+}

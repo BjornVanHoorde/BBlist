@@ -1,0 +1,22 @@
+/*
+*   Flash messages
+*/
+
+@use '../abstracts/variables' as vars;
+
+.flash {
+    color: vars.$white;
+    padding: 5px 2px;
+
+    li {
+        list-style-type: none;
+    }
+
+    &.error {
+        background-color: vars.$error-color;
+    }
+
+    &.success {
+        background-color: vars.$success-color;
+    }
+}

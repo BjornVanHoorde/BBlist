@@ -1,0 +1,10 @@
+/*
+*   The main layout
+*/
+
+@use '../abstracts/variables' as vars;
+
+.user-container {
+    width: 90%;
+    margin: vars.$under-header-margin auto;
+}

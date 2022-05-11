@@ -1,66 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.auth')
+
+@section('content')
+
+    <h1>{{ __('Register') }}</h1>
 
     @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
+        <x-validation.errors :errors='$errors'/>
     @endif
 
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
         <!-- First name -->
-        <div>
+        <div class="field">
             <label for="firstName">{{ __('First name') }}</label>
             <input type="text" id="firstName" name="firstName" value="{{ old('firstName') }}" required>
         </div>
 
         <!-- Last name -->
-        <div>
+        <div class="field">
             <label for="lastName">{{ __('Last name') }}</label>
             <input type="text" id="lastName" name="lastName" value="{{ old('lastName') }}" required>
         </div>
 
         <!-- Username-->
-        <div>
+        <div class="field">
             <label for="username">{{ __('Username') }}</label>
             <input type="text" id="username" name="username" value="{{ old('username') }}" required>
         </div>
 
         <!-- Email Address -->
-        <div>
+        <div class="field">
             <label for="email">{{ __('Email') }}</label>
             <input type="email" id="email" name="email" value="{{ old('email') }}" required>
         </div>
 
         <!-- Password -->
-        <div>
+        <div class="field">
             <label for="password">{{ __('Password') }}</label>
             <input type="password" id="password" name="password" value="{{ old('password') }}" required>
         </div>
 
         <!-- Confirm Password -->
-        <div>
+        <div class="field">
             <label for="password_confirmation">{{ __('Confirm Password') }}</label>
             <input type="password" id="password_confirmation" name="password_confirmation" value="{{ old('password_confirmation') }}" required>
         </div>
 
-        <div>
-            <a href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
+        <div class="button">
             <button type="submit">{{ __('Register') }}</button>
         </div>
-    </form>
 
-</body>
-</html>
+        <div class="auth-bottom">
+            <p>{{ __('Already registered?') }}</p>
+            <div class="link">
+                <a href="{{ route('login') }}">
+                    {{ __('Login here') }}
+                </a>
+            </div>
+        </div>
+    </form>
+@endsection

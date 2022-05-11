@@ -1,0 +1,39 @@
+/*
+*   Header
+*/
+
+@use '../abstracts/variables' as vars;
+
+header {
+    background-color: vars.$white;
+    box-shadow: 0 3px 6px vars.$shadow-color;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1rem;
+
+    &.boy {
+        background-color: vars.$boy-color;
+    }
+
+    &.girl {
+        background-color: vars.$girl-color;
+    }
+
+    &.neutral {
+        background-color: vars.$neutral-color;
+    }
+
+    img {
+        width: 3.5rem;
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+}

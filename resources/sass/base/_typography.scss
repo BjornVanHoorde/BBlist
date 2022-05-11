@@ -1,0 +1,36 @@
+/*
+*   Typography
+*/
+
+@use '../abstracts/variables' as vars;
+@use 'sass:map';
+
+h1 {
+    font-size: map.get($map: vars.$typography, $key: h1);
+    color: vars.$header-color;
+  }
+
+  h2 {
+    font-size: map.get($map: vars.$typography, $key: h2);
+    color: vars.$header-color;
+  }
+
+  h3 {
+    font-size: map.get($map: vars.$typography, $key: h3);
+    color: vars.$header-color;
+  }
+
+  h4 {
+    font-size: map.get($map: vars.$typography, $key: h4);
+    color: vars.$header-color;
+  }
+
+  p {
+    font-size: map.get($map: vars.$typography, $key: p);
+    color: vars.$font-color;
+  }
+
+  small {
+    font-size: map.get($map: vars.$typography, $key: small);
+    color: vars.$gray;
+  }

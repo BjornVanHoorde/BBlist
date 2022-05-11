@@ -1,0 +1,21 @@
+/*
+*   Menu
+*/
+
+@use '../abstracts/variables' as vars;
+
+#menu {
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    background-color: vars.$menu-background-color;
+    top: 0;
+}
+
+#outside-menu {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    z-index: 98;
+    background-color: vars.$menu-background-color;
+}

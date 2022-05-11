@@ -1,1 +1,333 @@
+/*
+ * Variables
+*/
+/*
+ * Base
+*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sofia-pro, sans-serif;
+}
 
+body {
+  background-color: #EFF0F3;
+}
+
+img {
+  width: 100%;
+}
+
+/*
+*   Typography
+*/
+h1 {
+  font-size: 2.441rem;
+  color: #0D0D0D;
+}
+
+h2 {
+  font-size: 1.953rem;
+  color: #0D0D0D;
+}
+
+h3 {
+  font-size: 1.563rem;
+  color: #0D0D0D;
+}
+
+h4 {
+  font-size: 1.25rem;
+  color: #0D0D0D;
+}
+
+p {
+  font-size: 1rem;
+  color: #2A2A2A;
+}
+
+small {
+  font-size: 0.8rem;
+  color: #707070;
+}
+
+/*
+ * Helpers
+ */
+.hide {
+  display: none;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/*
+*   Header
+*/
+header {
+  background-color: #FFF;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem;
+}
+header.boy {
+  background-color: #BAE8E8;
+}
+header.girl {
+  background-color: #FF8BA7;
+}
+header.neutral {
+  background-color: #FFD803;
+}
+header img {
+  width: 3.5rem;
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  cursor: pointer;
+}
+header img:hover {
+  transform: scale(1.2);
+}
+
+/*
+*   Menu
+*/
+#menu {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  background-color: rgba(239, 240, 243, 0.75);
+  top: 0;
+}
+
+#outside-menu {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  z-index: 98;
+  background-color: rgba(239, 240, 243, 0.75);
+}
+
+/*
+*   The main layout
+*/
+.user-container {
+  width: 90%;
+  margin: 6rem auto;
+}
+
+/*
+*   Banner
+*/
+.banner {
+  height: 150px;
+  overflow: hidden;
+}
+
+/*
+*   Logo
+*/
+.logo {
+  box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.5);
+  background-color: #EFF0F3;
+  width: 150px;
+  height: 150px;
+  border-radius: 75px;
+  position: absolute;
+  top: 75px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.logo img {
+  width: 100px;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+/*
+*   A form field
+*/
+.field label {
+  display: block;
+  text-align: left;
+  margin-left: 1rem;
+  color: #707070;
+}
+.field input {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0 1rem;
+  border-radius: 1rem;
+  border: 1px solid #707070;
+}
+.field input:focus {
+  outline: 3px solid #FF8E3C;
+}
+
+.field ~ .field {
+  margin-top: 1rem;
+}
+
+/*
+*   Links
+*/
+.link a {
+  color: #FF8E3C;
+}
+
+/*
+*   Extends
+*/
+.menu-button a, .menu-button button {
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 1.563rem;
+  border: none;
+  border-bottom: 1px solid #707070;
+  padding: 1rem 0;
+  background-color: #FFF;
+}
+
+/*
+*   Buttons
+*/
+.button {
+  margin-top: 2rem;
+}
+.button button {
+  background-color: #FF8E3C;
+  border-radius: 1rem;
+  border: none;
+  width: 100%;
+  font-size: 1.563rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 0.25rem 0;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+}
+.button button:hover {
+  filter: opacity(0.75);
+}
+
+.menu-button a {
+  display: block;
+  text-decoration: none;
+  color: #2A2A2A;
+  text-align: center;
+}
+.menu-button a:hover {
+  background-color: #FF8E3C;
+}
+.menu-button button {
+  cursor: pointer;
+}
+.menu-button button:hover {
+  background-color: #FF8E3C;
+}
+.menu-button:last-child button {
+  border-bottom: 3px solid #000;
+}
+
+.shop-button a {
+  display: block;
+  width: 100%;
+  background-image: url(/images/shop.jpg?f1240436adbd7aab66b863cadef645f0);
+  background-size: cover;
+  height: 240px;
+  border-radius: 1rem;
+  border: 5px solid #FF8E3C;
+  color: #2A2A2A;
+  text-decoration: none;
+  font-size: 2.441rem;
+  text-transform: uppercase;
+  padding-left: 1rem;
+}
+.shop-button a:hover {
+  filter: opacity(0.75);
+}
+
+.list a {
+  position: absolute;
+  color: #2A2A2A;
+  text-decoration: none;
+  font-size: 1.563rem;
+  padding-left: 0.8rem;
+}
+.list.boy a img {
+  border: 5px solid #749191;
+  border-radius: 1rem;
+}
+.list.girl a img {
+  border: 5px solid #6B3744;
+  border-radius: 1rem;
+}
+.list.neutral a img {
+  border: 5px solid #A89112;
+  border-radius: 1rem;
+}
+
+/*
+*   Flash messages
+*/
+.flash {
+  color: #FFF;
+  padding: 5px 2px;
+}
+.flash li {
+  list-style-type: none;
+}
+.flash.error {
+  background-color: #FF4C4C;
+}
+.flash.success {
+  background-color: #4BB543;
+}
+
+/*
+*   All authentication pages
+*/
+.banner-logo {
+  margin-bottom: 4.5rem;
+}
+
+.auth-container {
+  text-align: center;
+  width: 90vw;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+.auth-container form {
+  margin-top: 2rem;
+}
+.auth-container .auth-bottom {
+  margin-top: 2rem;
+}
+
+/*
+*   Dashboard Page
+*/
+.list-container {
+  margin-top: 2rem;
+}
+.list-container .lists {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}

@@ -1,0 +1,16 @@
+/*
+*   Extends
+*/
+
+@use '../abstracts/variables' as vars;
+@use 'sass:map';
+
+%menu-button {
+    width: 100%;
+    text-transform: uppercase;
+    font-size: map.get($map: vars.$typography, $key: h3);
+    border: none;
+    border-bottom: 1px solid vars.$gray;
+    padding: 1rem 0;
+    background-color: vars.$white;
+}

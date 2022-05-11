@@ -1,0 +1,29 @@
+/*
+*   Logo
+*/
+
+@use '../abstracts/variables' as vars;
+
+.logo {
+    box-shadow: 3px 5px 10px vars.$shadow-color;
+    background-color: vars.$background-color;
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+
+    position: absolute;
+    top: calc(150px - 75px);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+
+    img {
+        width: 100px;
+        position: absolute;
+        top: 20px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+}

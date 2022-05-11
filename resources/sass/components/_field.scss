@@ -1,0 +1,30 @@
+/*
+*   A form field
+*/
+
+@use '../abstracts/variables' as vars;
+
+.field {
+    label {
+        display: block;
+        text-align: left;
+        margin-left: 1rem;
+        color: vars.$gray;
+    }
+
+    input {
+        width: 100%;
+        height: vars.$field-height;
+        padding: 0 1rem;
+        border-radius: vars.$border-radius;
+        border: 1px solid vars.$gray;
+
+        &:focus {
+            outline: 3px solid vars.$highlight-color;
+        }
+    }
+}
+
+.field ~ .field {
+    margin-top: 1rem;
+}

@@ -1,49 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.auth')
+
+@section('content')
+
+    <h1>{{ __('Log in') }}</h1>
 
     @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
+        <x-validation.errors :errors='$errors'/>
     @endif
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
         <!-- Email Address -->
-        <div>
+        <div class="field">
             <label for="email">{{ __('Email') }}</label>
             <input type="text" id="email" name="email" value="{{ old('email') }}" required>
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
+        <div class="field">
             <label for="password">{{ __('Password') }}</label>
             <input type="password" id="password" name="password" value="{{ old('password') }}" required>
         </div>
 
 
-        <div >
+        <div class="link text-right">
             @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
+        </div>
 
-            <a href="{{ route('register') }}">
-                {{ __('No account yet?') }}
-            </a>
-
-            <button type="submit">{{ __('Login') }}</button>
+        <div class="button">
+            <button type="submit">{{ __('Log In') }}</button>
         </div>
     </form>
 
-</body>
-</html>
+    <div class="auth-bottom">
+        <p>{{ __('No account yet?') }}</p>
+        <div class="link">
+            <a href="{{ route('register') }}">
+                {{ __('Register here') }}
+            </a>
+        </div>
+    </div>
+@endsection

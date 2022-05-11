@@ -1,0 +1,13 @@
+/*
+*   Dashboard Page
+*/
+
+.list-container {
+    margin-top: 2rem;
+
+    .lists {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1rem;
+    }
+}

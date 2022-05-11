@@ -1,0 +1,11 @@
+/*
+*   Links
+*/
+
+@use '../abstracts/variables' as vars;
+
+.link {
+    a {
+        color: vars.$link-color;
+    }
+}
