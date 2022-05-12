@@ -28,6 +28,16 @@
             filter: opacity(0.75);
         }
     }
+
+    &.add {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+
+        a {
+            padding: 1rem 1.5rem;
+        }
+    }
 }
 
 .menu-button {

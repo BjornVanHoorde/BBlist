@@ -1,0 +1,19 @@
+/*
+*   Shop Page
+*/
+
+@use '../abstracts/variables' as vars;
+
+.link {
+    &.bannerlink {
+        position: absolute;
+    }
+}
+
+.stats {
+    margin-top: 1rem;
+
+    span {
+        color: vars.$highlight-color;
+    }
+}

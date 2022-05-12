@@ -11,6 +11,7 @@ header {
     top: 0;
     width: 100%;
     padding: 1rem;
+    z-index: 10;
 
     &.boy {
         background-color: vars.$boy-color;

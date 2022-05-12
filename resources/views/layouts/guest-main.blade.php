@@ -14,13 +14,10 @@
 
     @yield('header')
 
-    @yield('menu')
-
     <div class="user-container">
         @yield('content')
     </div>
 
-    <script src="{{ mix('js/app.js') }}"></script>
     <script src="https://kit.fontawesome.com/c552aa0d75.js" crossorigin="anonymous"></script>
 </body>
 </html>

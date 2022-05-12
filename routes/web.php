@@ -64,8 +64,28 @@ Route::get('/login', function () {
     return view('login');
 })->name('auth.login');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// })->middleware(['auth'])->name('dashboard');
+
+//GUESTS
+Route::get('/listlogin', function () {
+    return view('guests.list-login');
+})->name('list.login');
+
+Route::get('/list', function () {
+    return view('guests.list');
+})->name('list');
+
+Route::get('/productdetaillist', function () {
+    return view('guests.productDetail_list');
+})->name('product.list');
+
+Route::get('/message', function () {
+    return view('guests.message');
+})->name('message');
+
+
+//ADMIN
+Route::get('/scraper', function () {
+    return view('admin.scraper');
+})->name('scraper');
 
 require __DIR__.'/auth.php';

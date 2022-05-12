@@ -25,9 +25,11 @@
 @use 'components/product-card';
 @use 'components/product-detail';
 @use 'components/list-choice';
+@use 'components/list-card';
 
 //6. Page-Specific
 @use 'pages/authPages';
 @use 'pages/dashboardPage';
 @use 'pages/listEditPage';
 @use 'pages/shopPage';
+@use 'pages/listPage';

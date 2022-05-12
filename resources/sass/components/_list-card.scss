@@ -1,0 +1,47 @@
+/*
+*   List card
+*/
+
+@use '../abstracts/variables' as vars;
+
+.lists {
+    a {
+        text-decoration: none;
+        position: relative;
+
+        .list {
+            h3 {
+                position: absolute;
+                left: 1rem;
+                z-index: 5;
+            }
+
+            &.boy {
+                img {
+                    filter: sepia() saturate(200%) hue-rotate(170deg);
+                    border: 5px solid vars.$boy-dark-color;
+                }
+            }
+
+            &.girl {
+                img {
+                    border: 5px solid vars.$girl-dark-color;
+                    filter: sepia() saturate(200%) hue-rotate(240deg)
+                }
+            }
+
+            &.neutral {
+                img {
+                    border: 5px solid vars.$neutral-dark-color;
+                    filter: sepia() saturate(200%) hue-rotate(360deg)
+                }
+            }
+
+            &:hover {
+                img {
+                    filter: none;
+                }
+            }
+        }
+    }
+}

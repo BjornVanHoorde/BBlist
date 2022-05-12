@@ -5,6 +5,10 @@
 .list-container {
     margin-top: 2rem;
 
+    h2 {
+        margin-bottom: 1rem;
+    }
+
     .lists {
         display: grid;
         grid-template-columns: 1fr 1fr;

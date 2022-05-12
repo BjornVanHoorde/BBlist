@@ -28,35 +28,39 @@
 
             <div class="lists">
 
-                <div class="list boy">
-                    <a href="">
-                        Jonas
+                <a href="">
+                    <div class="list boy">
+                        <h3>Jonas</h3>
                         <img src="{{ URL::asset('assets/baby1.jpg') }}" alt="baby1.png">
-                    </a>
-                </div>
+                    </div>
+                </a>
 
-                <div class="list girl">
-                    <a href="">
-                        Jonas
+                <a href="">
+                    <div class="list girl">
+                        <h3>Jonas</h3>
                         <img src="{{ URL::asset('assets/baby1.jpg') }}" alt="baby1.png">
-                    </a>
-                </div>
+                    </div>
+                </a>
 
-                {{-- <div class="list girl">
-                    <a href="">
-                        Jonas
+                <a href="">
+                    <div class="list boy">
+                        <h3>Jonas</h3>
                         <img src="{{ URL::asset('assets/baby1.jpg') }}" alt="baby1.png">
-                    </a>
-                </div>
+                    </div>
+                </a>
 
-                <div class="list neutral">
-                    <a href="">
-                        Jonas
+                <a href="">
+                    <div class="list neutral">
+                        <h3>Jonas</h3>
                         <img src="{{ URL::asset('assets/baby1.jpg') }}" alt="baby1.png">
-                    </a>
-                </div> --}}
+                    </div>
+                </a>
 
             </div>
+        </div>
+
+        <div class="button add">
+            <a class="text-center" href=""><i class="fa-solid fa-plus"></i></a>
         </div>
 
     </div>

@@ -1,22 +1,12 @@
-@extends('layouts.main')
+@extends('layouts.guest-main')
 
 @section('header')
 
-    <x-static.header title="Home" />
-
-@endsection
-
-@section('menu')
-
-    <x-static.menu />
+    <x-static.guest-header title="Home" />
 
 @endsection
 
 @section('content')
-
-    <div class="link bannerlink">
-        <a href="">{{ __('Go back') }}</a>
-    </div>
 
     <div class="banner">
         <img src="{{ URL::asset('assets/baby1.jpg') }}" alt="baby1.png">

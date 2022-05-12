@@ -1,16 +1,11 @@
-@extends('layouts.main')
+@extends('layouts.guest-main')
 
 @section('header')
 
-    <x-static.header title="Home" />
+    <x-static.guest-header title="Home" />
 
 @endsection
 
-@section('menu')
-
-    <x-static.menu />
-
-@endsection
 
 @section('content')
 

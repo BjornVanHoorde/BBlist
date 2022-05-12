@@ -85,6 +85,7 @@ header {
   top: 0;
   width: 100%;
   padding: 1rem;
+  z-index: 10;
 }
 header.boy {
   background-color: #BAE8E8;
@@ -277,6 +278,14 @@ header img:hover {
 .button a:hover {
   filter: opacity(0.75);
 }
+.button.add {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+}
+.button.add a {
+  padding: 1rem 1.5rem;
+}
 
 .menu-button a {
   display: block;
@@ -351,6 +360,7 @@ header img:hover {
 .flash {
   color: #FFF;
   padding: 5px 2px;
+  border-radius: 1rem;
 }
 .flash li {
   list-style-type: none;
@@ -379,12 +389,23 @@ header img:hover {
 .product-card .product .image img {
   border-radius: 1rem;
 }
+.product-card .product .description {
+  position: relative;
+}
 .product-card .product .description h2 {
-  margin-top: 1rem;
+  margin: 1rem 0;
   color: #FF8E3C;
 }
 .product-card .product .description h5 {
   color: #707070;
+}
+.product-card .product .description small {
+  position: absolute;
+  right: 1rem;
+  bottom: 0;
+}
+.product-card .product .description small .fa-circle-check {
+  color: #4BB543;
 }
 
 /*
@@ -451,6 +472,34 @@ header img:hover {
 }
 
 /*
+*   List card
+*/
+.lists a {
+  text-decoration: none;
+  position: relative;
+}
+.lists a .list h3 {
+  position: absolute;
+  left: 1rem;
+  z-index: 5;
+}
+.lists a .list.boy img {
+  filter: sepia() saturate(200%) hue-rotate(170deg);
+  border: 5px solid #749191;
+}
+.lists a .list.girl img {
+  border: 5px solid #6B3744;
+  filter: sepia() saturate(200%) hue-rotate(240deg);
+}
+.lists a .list.neutral img {
+  border: 5px solid #A89112;
+  filter: sepia() saturate(200%) hue-rotate(360deg);
+}
+.lists a .list:hover img {
+  filter: none;
+}
+
+/*
 *   All authentication pages
 */
 .banner-logo {
@@ -475,6 +524,9 @@ header img:hover {
 */
 .list-container {
   margin-top: 2rem;
+}
+.list-container h2 {
+  margin-bottom: 1rem;
 }
 .list-container .lists {
   display: grid;
@@ -501,4 +553,18 @@ header img:hover {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 1rem;
+}
+
+/*
+*   Shop Page
+*/
+.link.bannerlink {
+  position: absolute;
+}
+
+.stats {
+  margin-top: 1rem;
+}
+.stats span {
+  color: #FF8E3C;
 }
