@@ -26,6 +26,28 @@
         &[type=file] {
             border: none;
         }
+
+        &[type=radio] {
+            border: none;
+            outline: none;
+            border-radius: 1px;
+            height: calc(vars.$field-height / 1.4);
+            width: calc(vars.$field-height / 1.4);
+        }
+    }
+
+    .radio-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+
+        .radio {
+            display: flex;
+            justify-content: center;
+
+            label {
+                display: inline;
+            }
+        }
     }
 
     textarea {
@@ -38,6 +60,15 @@
 
         &:focus {
             outline: 3px solid vars.$highlight-color;
+        }
+    }
+
+    .select {
+        display: flex;
+
+        label {
+            display: inline;
+            margin-right: 1rem;
         }
     }
 }

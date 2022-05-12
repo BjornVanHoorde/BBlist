@@ -11,15 +11,18 @@
     margin-top: 2rem;
 
     button {
-        background-color: vars.$button-color;
-        border-radius: vars.$border-radius;
-        border: none;
-        width: 100%;
-        font-size: map.get($map: vars.$typography, $key: h3);
-        cursor: pointer;
-        text-transform: uppercase;
-        padding: 0.25rem 0;
-        box-shadow: 3px 3px 6px vars.$shadow-color;
+        @extend %button;
+
+        &:hover {
+            filter: opacity(0.75);
+        }
+    }
+
+    a {
+        @extend %button;
+        display: block;
+        color: vars.$header-color;
+        text-decoration: none;
 
         &:hover {
             filter: opacity(0.75);
@@ -54,6 +57,19 @@
     &:last-child {
         button {
             border-bottom: 3px solid vars.$black;
+        }
+    }
+
+    &.category {
+        margin-top: 1rem;
+
+        img {
+            width: 4rem;
+            position: absolute;
+        }
+
+        a {
+            border: none;
         }
     }
 }

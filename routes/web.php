@@ -33,6 +33,26 @@ Route::get('/profile_edit', function () {
     return view('users.profile_edit');
 })->middleware(['auth'])->name('profile.edit');
 
+Route::get('/list_edit', function () {
+    return view('users.list_edit');
+})->middleware(['auth'])->name('list.edit');
+
+Route::get('/shop', function () {
+    return view('users.shop');
+})->middleware(['auth'])->name('shop');
+
+Route::get('/productdetailshop', function () {
+    return view('users.productDetail_shop');
+})->middleware(['auth'])->name('product.shop');
+
+Route::get('/productdetaillist', function () {
+    return view('users.productDetail_list');
+})->middleware(['auth'])->name('product.list');
+
+Route::get('/list', function () {
+    return view('users.list');
+})->middleware(['auth'])->name('list');
+
 
 
 //AUTHENTICATION

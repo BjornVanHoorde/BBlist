@@ -5,6 +5,18 @@
 @use '../abstracts/variables' as vars;
 @use 'sass:map';
 
+%button {
+    background-color: vars.$button-color;
+    border-radius: vars.$border-radius;
+    border: none;
+    width: 100%;
+    font-size: map.get($map: vars.$typography, $key: h3);
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 0.25rem 0;
+    box-shadow: 3px 3px 6px vars.$shadow-color;
+}
+
 %menu-button {
     width: 100%;
     text-transform: uppercase;

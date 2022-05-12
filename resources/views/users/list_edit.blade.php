@@ -65,6 +65,10 @@
         <button type="submit">{{ __('Make list') }}</button>
     </div>
 
+    <div class="link text-center">
+        <a href="">{{ __('Delete list') }}</a>
+    </div>
+
 </form>
 
 

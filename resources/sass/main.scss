@@ -22,7 +22,12 @@
 @use 'components/link';
 @use 'components/button';
 @use 'components/flash-message';
+@use 'components/product-card';
+@use 'components/product-detail';
+@use 'components/list-choice';
 
 //6. Page-Specific
 @use 'pages/authPages';
 @use 'pages/dashboardPage';
+@use 'pages/listEditPage';
+@use 'pages/shopPage';

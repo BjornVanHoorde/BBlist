@@ -71,6 +71,10 @@ small {
   text-align: right;
 }
 
+.italic {
+  font-style: italic;
+}
+
 /*
 *   Header
 */
@@ -109,6 +113,7 @@ header img:hover {
   position: fixed;
   z-index: 99;
   width: 100%;
+  height: 100vh;
   background-color: rgba(239, 240, 243, 0.75);
   top: 0;
 }
@@ -183,6 +188,24 @@ header img:hover {
 .field input[type=file] {
   border: none;
 }
+.field input[type=radio] {
+  border: none;
+  outline: none;
+  border-radius: 1px;
+  height: 1.7857142857rem;
+  width: 1.7857142857rem;
+}
+.field .radio-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.field .radio-container .radio {
+  display: flex;
+  justify-content: center;
+}
+.field .radio-container .radio label {
+  display: inline;
+}
 .field textarea {
   width: 100%;
   border-radius: 1rem;
@@ -192,6 +215,13 @@ header img:hover {
 }
 .field textarea:focus {
   outline: 3px solid #FF8E3C;
+}
+.field .select {
+  display: flex;
+}
+.field .select label {
+  display: inline;
+  margin-right: 1rem;
 }
 
 .field ~ .field {
@@ -208,6 +238,18 @@ header img:hover {
 /*
 *   Extends
 */
+.button button, .button a {
+  background-color: #FF8E3C;
+  border-radius: 1rem;
+  border: none;
+  width: 100%;
+  font-size: 1.563rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  padding: 0.25rem 0;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+}
+
 .menu-button a, .menu-button button {
   width: 100%;
   text-transform: uppercase;
@@ -224,18 +266,15 @@ header img:hover {
 .button {
   margin-top: 2rem;
 }
-.button button {
-  background-color: #FF8E3C;
-  border-radius: 1rem;
-  border: none;
-  width: 100%;
-  font-size: 1.563rem;
-  cursor: pointer;
-  text-transform: uppercase;
-  padding: 0.25rem 0;
-  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-}
 .button button:hover {
+  filter: opacity(0.75);
+}
+.button a {
+  display: block;
+  color: #0D0D0D;
+  text-decoration: none;
+}
+.button a:hover {
   filter: opacity(0.75);
 }
 
@@ -256,6 +295,16 @@ header img:hover {
 }
 .menu-button:last-child button {
   border-bottom: 3px solid #000;
+}
+.menu-button.category {
+  margin-top: 1rem;
+}
+.menu-button.category img {
+  width: 4rem;
+  position: absolute;
+}
+.menu-button.category a {
+  border: none;
 }
 
 .shop-button a {
@@ -314,6 +363,94 @@ header img:hover {
 }
 
 /*
+*   A product card
+*/
+.product-card {
+  text-decoration: none;
+}
+.product-card .product {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-gap: 1rem;
+  padding: 0.5rem;
+  background-color: #FFF;
+  cursor: pointer;
+}
+.product-card .product .image img {
+  border-radius: 1rem;
+}
+.product-card .product .description h2 {
+  margin-top: 1rem;
+  color: #FF8E3C;
+}
+.product-card .product .description h5 {
+  color: #707070;
+}
+
+/*
+*   Product details
+*/
+.product-detail {
+  margin-top: 2rem;
+}
+.product-detail img {
+  border-radius: 1rem;
+}
+.product-detail h2 {
+  color: #FF8E3C;
+}
+.product-detail h5 {
+  color: #707070;
+}
+.product-detail p {
+  margin-top: 2rem;
+}
+
+/*
+*   Box for choosing lists
+*/
+#list-choices {
+  background-color: rgba(239, 240, 243, 0.75);
+  z-index: 98;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.list-choice {
+  z-index: 99;
+  position: fixed;
+  top: 20vh;
+  width: 80%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 1rem 2rem;
+}
+.list-choice .checkbox {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 1rem;
+}
+.list-choice .checkbox.boy {
+  background-color: #BAE8E8;
+}
+.list-choice .checkbox.girl {
+  background-color: #FF8BA7;
+}
+.list-choice .checkbox.neutral {
+  background-color: #FFD803;
+}
+.list-choice a {
+  cursor: pointer;
+}
+
+/*
 *   All authentication pages
 */
 .banner-logo {
@@ -342,5 +479,26 @@ header img:hover {
 .list-container .lists {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+/*
+*   List edit Page
+*/
+.link {
+  margin-top: 1rem;
+}
+
+/*
+*   Shop Page
+*/
+.field {
+  margin-top: 1rem;
+}
+
+.products {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
   grid-gap: 1rem;
 }

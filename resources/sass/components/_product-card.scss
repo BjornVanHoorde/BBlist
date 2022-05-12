@@ -1,0 +1,37 @@
+/*
+*   A product card
+*/
+
+@use '../abstracts/variables' as vars;
+
+.product-card {
+    text-decoration: none;
+
+    .product {
+        display: grid;
+        grid-template-columns: 40% 60%;
+        grid-gap: 1rem;
+        padding: 0.5rem;
+
+        background-color: vars.$white;
+        cursor: pointer;
+
+        .image {
+            img {
+                border-radius: 1rem;
+            }
+        }
+
+        .description {
+
+            h2 {
+                margin-top: 1rem;
+                color: vars.$highlight-color;
+            }
+
+            h5 {
+                color: vars.$gray;
+            }
+        }
+    }
+}

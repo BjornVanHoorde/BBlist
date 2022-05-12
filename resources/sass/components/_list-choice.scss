@@ -1,0 +1,51 @@
+/*
+*   Box for choosing lists
+*/
+
+@use '../abstracts/variables' as vars;
+
+#list-choices {
+    background-color: vars.$choice-background-color;
+    z-index: 98;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.list-choice {
+    z-index: 99;
+    position: fixed;
+    top: 20vh;
+    width: 80%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    background-color: vars.$white;
+    padding: 1rem 2rem;
+
+    .checkbox {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        margin-top: 1rem;
+        border-radius: 1rem;
+
+        &.boy {
+            background-color: vars.$boy-color;
+        }
+
+        &.girl {
+            background-color: vars.$girl-color;
+        }
+
+        &.neutral {
+            background-color: vars.$neutral-color;
+        }
+    }
+
+    a {
+        cursor: pointer;
+    }
+}
