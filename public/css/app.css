@@ -568,3 +568,34 @@ header img:hover {
 .stats span {
   color: #FF8E3C;
 }
+
+/*
+*   Scraper page
+*/
+.scrape-form {
+  margin-top: 1rem;
+  text-align: center;
+}
+.scrape-form .form-field {
+  margin-bottom: 1rem;
+  width: 75%;
+  margin: 1rem auto;
+}
+.scrape-form .form-field label {
+  display: block;
+}
+.scrape-form .form-field input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+.scrape-form .form-field select {
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+
+.categories {
+  margin: 3rem auto;
+}
+.categories td {
+  padding: 0.5rem 0;
+}

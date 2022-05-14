@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ScrapeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -84,8 +85,9 @@ Route::get('/message', function () {
 
 
 //ADMIN
-Route::get('/scraper', function () {
-    return view('admin.scraper');
-})->name('scraper');
+Route::get('/scraper', [ScrapeController::class, 'show'])->name('scraper');
+Route::post('/scrape/categories', [ScrapeController::class, 'scrapeCategories'])->name('scrape.categories');
+Route::post('/scrape/articles', [ScrapeController::class, 'scrapeArticles'])->name('scrape.articles');
+
 
 require __DIR__.'/auth.php';
