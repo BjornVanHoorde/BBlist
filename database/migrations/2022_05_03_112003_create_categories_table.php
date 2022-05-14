@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('url');
+            $table->string('pathname');
             $table->foreignId('shop_id')->constrained();
             $table->foreignId('head_category_id')->constrained();
             $table->timestamps();

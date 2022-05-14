@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use stdClass;
 use Illuminate\Support\Str;
 
+
 set_time_limit(1800);
 
 class ScrapeController extends Controller
@@ -21,13 +22,15 @@ class ScrapeController extends Controller
         $shops = [
             'babycorner' => 'The Baby\'s Corner',
             'mimibaby' => 'Mimi Baby',
+            'babyboom' => 'Babyboom',
         ];
 
         $headCategories = Head_category::all();
         $babycornerCategories = Category::where('shop_id', 1)->get();
         $mimibabyCategories = Category::where('shop_id', 2)->get();
+        $babyboomCategories = Category::where('shop_id', 3)->get();
 
-        return view('admin.scrape-form', compact('shops', 'headCategories', 'babycornerCategories', 'mimibabyCategories'));
+        return view('admin.scrape-form', compact('shops', 'headCategories', 'babycornerCategories', 'mimibabyCategories', 'babyboomCategories'));
     }
 
     public function scrapeCategories(Request $r) {
@@ -37,6 +40,9 @@ class ScrapeController extends Controller
                 break;
             case 'mimibaby':
                 $this->scrapeMimibabyCategories($r->url, $r->headCategory);
+                break;
+            case 'babyboom':
+                $this->scrapeBabyboomCategories($r->url, $r->headCategory);
                 break;
         }
         return redirect()->back();
@@ -49,6 +55,9 @@ class ScrapeController extends Controller
                 break;
             case 'mimibaby':
                 return $this->scrapeMimibabyArticles($r->url, $r->category);
+                break;
+            case 'babyboom':
+                return $this->scrapebabyboomArticles($r->url, $r->category);
                 break;
         }
     }
@@ -75,17 +84,7 @@ class ScrapeController extends Controller
 
         $categories = array_values(array_filter($categories))[0];
 
-        foreach ($categories as $scrapeCategory) {
-            $exists = Category::where('url', $scrapeCategory->url)->count();
-            if ($exists > 0) continue;
-
-            $categoryEntity = new Category();
-            $categoryEntity->name = $scrapeCategory->name;
-            $categoryEntity->url = $scrapeCategory->url;
-            $categoryEntity->shop_id = 1;
-            $categoryEntity->head_category_id = $headCategory;
-            $categoryEntity->save();
-        }
+        $this->storeCategories($categories, $headCategory, 1);
     }
 
     public function scrapeMimibabyCategories($url, $headCategory) {
@@ -101,17 +100,24 @@ class ScrapeController extends Controller
                 return $cat;
             });
 
-        foreach ($categories as $scrapeCategory) {
-            $exists = Category::where('url', $scrapeCategory->url)->count();
-            if ($exists > 0) continue;
+        $this->storeCategories($categories, $headCategory, 2);
+    }
 
-            $categoryEntity = new Category();
-            $categoryEntity->name = $scrapeCategory->name;
-            $categoryEntity->url = $scrapeCategory->url;
-            $categoryEntity->shop_id = 2;
-            $categoryEntity->head_category_id = $headCategory;
-            $categoryEntity->save();
-        }
+    public function scrapeBabyboomCategories($url, $headCategory) {
+        $client = new Client();
+        $crawler = $client->request('GET', $url);
+
+        $categoryDiv = $crawler->filter('.facet__block')->first();
+        $categories = $categoryDiv->filter('.custom-control.custom-checkbox')
+            ->each(function($node) {
+                $cat = new stdClass();
+                $cat->name = $node->filter('.color__label')->text();
+                $cat->url = $node->filter('.custom-control-input')->attr('data-search-url');
+
+                return $cat;
+            });
+
+        $this->storeCategories($categories, $headCategory, 3);
     }
 
     public function scrapeBabycornerArticles($url, $category) {
@@ -200,6 +206,74 @@ class ScrapeController extends Controller
         $description = $crawler->filter('.product-detail-tabs-content .product-detail-description-text')->text();
 
         return $description;
+    }
+
+    public function scrapebabyboomArticles($url, $category) {
+        $client = new Client();
+
+        $articles = [];
+
+        for ($i=1; $i <= 10; $i++) {
+            $crawler = $client->request('GET', $url . '&page=' . $i);
+            if(!$crawler) break;
+            $articles = array_merge($articles, $this->scrapeBabyboomdata($crawler));
+        }
+
+        foreach ($articles as $article) {
+            $this->storeArticle($article, $category, 3);
+        }
+
+        return view('admin.scrape-result', compact('articles'));
+    }
+
+
+    public function scrapeBabyboomdata($crawler) {
+        $articles = $crawler->filter('#js-product-list .mini_pdct')
+            ->each(function($node) {
+                $art = new stdClass();
+                $art->name = $node->filter('.mini_pdct__info .product-title a')->text();
+                $art->price = ltrim($node->filter('.mini_pdct__prices .product-price-and-shipping p')->text(), '€ ');
+                $art->url = $node->filter('.mini_pdct__info .product-title a')->attr('href');
+                $art->image = $node->filter('.mini_pdct__img .thumbnail img')->first()->attr('data-src');
+                $art->description = $this->getDesciptionBabyboom($art->url);
+
+                return $art;
+            });
+
+        return $articles;
+    }
+
+
+    public function getDesciptionBabyboom($url) {
+        $client = new Client();
+        $crawler = $client->request('GET', $url);
+
+        $description = $crawler->filter('.product-tabs .tab-content #description .product-description');
+
+        if ($description->count() <= 0) return null;
+        $description = $crawler->filter('.product-tabs .tab-content #description .product-description')->text();
+
+        return $description;
+    }
+
+
+
+
+
+
+    public function storeCategories($categories, $headCategory, $shop_id) {
+        foreach ($categories as $scrapeCategory) {
+            $exists = Category::where('url', $scrapeCategory->url)->count();
+            if ($exists > 0) continue;
+
+            $categoryEntity = new Category();
+            $categoryEntity->name = $scrapeCategory->name;
+            $categoryEntity->url = $scrapeCategory->url;
+            $categoryEntity->pathname = Str::slug($scrapeCategory->name);
+            $categoryEntity->shop_id = $shop_id;
+            $categoryEntity->head_category_id = $headCategory;
+            $categoryEntity->save();
+        }
     }
 
     public function storeArticle($article, $category, $shop_id) {

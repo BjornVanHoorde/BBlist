@@ -82,5 +82,25 @@
             </tr>
         @endforeach
     </table>
+
+    <table class="categories">
+        <th>
+            <h2>Babyboom</h2>
+        </th>
+        @foreach ($babyboomCategories as $category)
+            <tr>
+                <td>{{ $category->name }}</td>
+                <td>
+                    <form action="{{ route('scrape.articles') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="url" value="{{ $category->url }}">
+                        <input type="hidden" name="category" value="{{ $category->id }}">
+                        <input type="hidden" name="shop" value="babyboom">
+                        <button type="submit">Scrape all articles</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </table>
 </body>
 </html>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('gender');
+            $table->text('description');
             $table->string('password');
             $table->string('slug');
             $table->foreignId('user_id')->constrained();

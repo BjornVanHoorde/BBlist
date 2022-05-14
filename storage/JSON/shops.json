@@ -1,0 +1,14 @@
+{
+   "shop1": {
+        "name": "The Baby's Corner",
+        "url": "https://www.thebabyscorner.be/nl-be/"
+    },
+   "shop2": {
+        "name": "Mimi Baby",
+        "url": "https://www.mimibaby.be/nl/"
+    },
+   "shop3": {
+        "name": "Babyboom",
+        "url": "https://shop.babyboom.be/nl/"
+    }
+}

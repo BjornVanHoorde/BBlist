@@ -1,0 +1,30 @@
+{
+   "category1": {
+        "name": "Speelgoed",
+        "pathname": "/speelgoed"
+    },
+   "category2": {
+        "name": "Kleding",
+        "pathname": "/kleding"
+    },
+   "category3": {
+        "name": "Slapen",
+        "pathname": "/slapen"
+    },
+   "category4": {
+        "name": "Verzorging",
+        "pathname": "/verzorging"
+    },
+   "category5": {
+        "name": "Veiligheid",
+        "pathname": "/veiligheid"
+    },
+   "category6": {
+        "name": "School",
+        "pathname": "/school"
+    },
+   "category7": {
+        "name": "Onderweg",
+        "pathname": "/onderweg"
+    }
+}
