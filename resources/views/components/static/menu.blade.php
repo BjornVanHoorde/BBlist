@@ -3,7 +3,7 @@
         <a href="{{ route('dashboard') }}">{{ __('Home') }}</a>
     </div>
     <div class="menu-button">
-        <a href="{{ route('categories') }}">{{ __('Categories') }}</a>
+        <a href="{{ route('headCategories') }}">{{ __('Categories') }}</a>
     </div>
     <div class="menu-button">
         <a href="{{ route('list.new') }}">{{ __('New list') }}</a>

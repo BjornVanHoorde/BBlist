@@ -2,7 +2,7 @@
 
 @section('header')
 
-    <x-static.header title="Home" />
+    <x-static.header :title="$title" />
 
 @endsection
 
@@ -14,85 +14,35 @@
 
 @section('content')
 
-    <div class="button text-center">
-        <a href="{{ route('categories') }}">{{ __('Categories') }}</a>
+    <div class="link">
+        <a href="{{ URL::previous() }}">{{ __('Go back') }}</a>
     </div>
 
-    <div class="field">
-        <div class="select">
-            <label for="price">{{ __('Price') }}</label>
-            <select name="price" id="price">
-                <option value="low">{{ __('Low to high') }}</option>
-                <option value="high">{{ __('High to low') }}</option>
-            </select>
+
+    @if (count($products) <= 0)
+        <h3 class='text-center' >{{ __('There are no products available at the moment') }}</h3>
+    @endif
+
+    @if (count($products) > 0)
+    <p class='text-center' >{{ count($products) . ' ' . __('products') }}</p>
+        <div class="field">
+            <div class="select">
+                <label for="price">{{ __('Price') }}</label>
+                <select name="price" id="price">
+                    <option value=""> - </option>
+                    <option value="low">{{ __('Low to high') }}</option>
+                    <option value="high">{{ __('High to low') }}</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="products">
-        <a class="product-card" href="{{ route('product.shop') }}">
-            <div class="product">
-                <div class="image">
-                    <img src="{{ URL::asset('assets/truck.jpg') }}" alt="truck.jpg">
-                </div>
-                <div class="description">
-                    <h4>Gele vrachtwagen</h4>
-                    <h5>Baby Corner</h5>
-                    <h2>€ 5,59</h2>
-                </div>
-            </div>
-        </a>
+        <div class="products">
 
-        <a class="product-card" href="{{ route('product.shop') }}">
-            <div class="product">
-                <div class="image">
-                    <img src="{{ URL::asset('assets/truck.jpg') }}" alt="truck.jpg">
-                </div>
-                <div class="description">
-                    <h4>Gele vrachtwagen</h4>
-                    <h5>Baby Corner</h5>
-                    <h2>€ 5,59</h2>
-                </div>
-            </div>
-        </a>
+            @foreach ($products as $product)
+                <x-shop-product-card :product='$product'/>
+            @endforeach
 
-        <a class="product-card" href="{{ route('product.shop') }}">
-            <div class="product">
-                <div class="image">
-                    <img src="{{ URL::asset('assets/truck.jpg') }}" alt="truck.jpg">
-                </div>
-                <div class="description">
-                    <h4>Gele vrachtwagen</h4>
-                    <h5>Baby Corner</h5>
-                    <h2>€ 5,59</h2>
-                </div>
-            </div>
-        </a>
+        </div>
+    @endif
 
-        <a class="product-card" href="{{ route('product.shop') }}">
-            <div class="product">
-                <div class="image">
-                    <img src="{{ URL::asset('assets/truck.jpg') }}" alt="truck.jpg">
-                </div>
-                <div class="description">
-                    <h4>Gele vrachtwagen</h4>
-                    <h5>Baby Corner</h5>
-                    <h2>€ 5,59</h2>
-                </div>
-            </div>
-        </a>
-
-        <a class="product-card" href="{{ route('product.shop') }}">
-            <div class="product">
-                <div class="image">
-                    <img src="{{ URL::asset('assets/truck.jpg') }}" alt="truck.jpg">
-                </div>
-                <div class="description">
-                    <h4>Gele vrachtwagen</h4>
-                    <h5>Baby Corner</h5>
-                    <h2>€ 5,59</h2>
-                </div>
-            </div>
-        </a>
-
-    </div>
 
 @endsection

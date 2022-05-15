@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\ScrapeController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Head_categoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +25,8 @@ Route::get('/dashboard', function () {
     return view('users.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/categories', function () {
-    return view('users.categories');
-})->middleware(['auth'])->name('categories');
+Route::get('/categories', [Head_categoryController::class, 'show'])->middleware(['auth'])->name('headCategories');
+Route::get('/categories/{category}', [CategoryController::class, 'show'])->middleware(['auth'])->name('categories');
 
 Route::get('/list_new', function () {
     return view('users.list_new');
@@ -38,13 +40,8 @@ Route::get('/list_edit', function () {
     return view('users.list_edit');
 })->middleware(['auth'])->name('list.edit');
 
-Route::get('/shop', function () {
-    return view('users.shop');
-})->middleware(['auth'])->name('shop');
-
-Route::get('/productdetailshop', function () {
-    return view('users.productDetail_shop');
-})->middleware(['auth'])->name('product.shop');
+Route::get('/shop/{category}', [ProductController::class, 'show'])->middleware(['auth'])->name('shop');
+Route::get('/shop/product/{product}', [ProductController::class, 'detail'])->middleware(['auth'])->name('product.shop');
 
 Route::get('/productdetaillist', function () {
     return view('users.productDetail_list');

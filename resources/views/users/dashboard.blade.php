@@ -17,7 +17,7 @@
     <div class="dashboard-container">
 
         <div class="shop-button">
-            <a href="{{ route('categories') }}">
+            <a href="{{ route('headCategories') }}">
                 {{ __('Go to') }} <br>
                 {{ __('shop') }}
             </a>

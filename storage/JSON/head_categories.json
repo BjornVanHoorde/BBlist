@@ -1,30 +1,30 @@
 {
    "category1": {
         "name": "Speelgoed",
-        "pathname": "/speelgoed"
+        "pathname": "speelgoed"
     },
    "category2": {
         "name": "Kleding",
-        "pathname": "/kleding"
+        "pathname": "kleding"
     },
    "category3": {
         "name": "Slapen",
-        "pathname": "/slapen"
+        "pathname": "slapen"
     },
    "category4": {
         "name": "Verzorging",
-        "pathname": "/verzorging"
+        "pathname": "verzorging"
     },
    "category5": {
         "name": "Veiligheid",
-        "pathname": "/veiligheid"
+        "pathname": "veiligheid"
     },
    "category6": {
         "name": "School",
-        "pathname": "/school"
+        "pathname": "school"
     },
    "category7": {
         "name": "Onderweg",
-        "pathname": "/onderweg"
+        "pathname": "onderweg"
     }
 }

@@ -2,7 +2,7 @@
 
 @section('header')
 
-    <x-static.header title="Home" />
+    <x-static.header :title="$title" />
 
 @endsection
 
@@ -15,25 +15,25 @@
 @section('content')
 
     <div class="link">
-        <a href="">{{ __('Go back') }}</a>
+        <a href="{{ URL::previous() }}">{{ __('Go back') }}</a>
     </div>
 
     <div class="product-detail">
-        <img src="{{ URL::asset('assets/truck.jpg') }}" alt="truck.png">
+        <img src="{{ url('storage/' . $product->path) }}" alt="{{ $product->alt }}">
 
-        <h2 class="text-right">€ 5,59</h2>
+        <h2 class="text-right">€ {{ $product->price }}</h2>
 
-        <h3>Gele vrachtwagen</h3>
-        <h5>{{ __('Offered by') }} Baby Corner</h5>
+        <h3>{{ $product->name }}</h3>
+        <h5>{{ __('Offered by') . ' ' . $product->shopName }}</h5>
 
-        <p>Deze mooie gele vrachtwagen is speciaal ontworpen om maximaal plezier uit de belevenis te halen. Uw kind zal hier urenlang plezier mee beleven. Naast de unieke kwaliteit, is het ook nog eens milieuvriendelijk...………….</p>
+        <p>{{ $product->description }}</p>
 
         <div class="button">
             <button id="add-to-list">{{ __('Add to list') }}</button>
         </div>
 
         <div class="link text-center">
-            <a href="">{{ __('Check out this product on the official website') }}</a>
+            <a target="_blank" href="{{ url($product->url) }}">{{ __('Check out this product on the official website') }}</a>
         </div>
     </div>
 
