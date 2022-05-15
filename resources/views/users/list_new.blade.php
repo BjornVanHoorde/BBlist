@@ -2,7 +2,7 @@
 
 @section('header')
 
-    <x-static.header title="Home" />
+    <x-static.header :title="$title" />
 
 @endsection
 
@@ -14,7 +14,12 @@
 
 @section('content')
 
-<form action="">
+<form action="{{ route('list.create') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+
+    @if ($errors->any())
+        <x-validation.errors :errors='$errors'/>
+    @endif
 
     <div class="field">
         <label for="nameOfChild">{{ __('Name of the child') }}</label>

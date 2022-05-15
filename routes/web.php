@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ScrapeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Head_categoryController;
+use App\Http\Controllers\ListController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,19 +19,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 // USERS
-Route::get('/', function () {
-    return redirect(route('dashboard'));
-})->middleware(['auth']);
-Route::get('/dashboard', function () {
-    return view('users.dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/', function () {return redirect(route('dashboard'));})->middleware(['auth']);
+Route::get('/dashboard', [ListController::class, 'show'])->middleware(['auth'])->name('dashboard');
 
 Route::get('/categories', [Head_categoryController::class, 'show'])->middleware(['auth'])->name('headCategories');
 Route::get('/categories/{category}', [CategoryController::class, 'show'])->middleware(['auth'])->name('categories');
 
-Route::get('/list_new', function () {
-    return view('users.list_new');
-})->middleware(['auth'])->name('list.new');
+Route::get('/list_new', [ListController::class, 'new'])->middleware(['auth'])->name('list.new');
+Route::post('/list_new', [ListController::class, 'create'])->middleware(['auth'])->name('list.create');
 
 Route::get('/profile_edit', function () {
     return view('users.profile_edit');
