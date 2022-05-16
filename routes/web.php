@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Head_categoryController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,38 +19,43 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//
 // USERS
+//
+
+//dashboard
 Route::get('/', function () {return redirect(route('dashboard'));})->middleware(['auth']);
 Route::get('/dashboard', [ListController::class, 'show'])->middleware(['auth'])->name('dashboard');
 
+//categories
 Route::get('/categories', [Head_categoryController::class, 'show'])->middleware(['auth'])->name('headCategories');
 Route::get('/categories/{category}', [CategoryController::class, 'show'])->middleware(['auth'])->name('categories');
 
+//list
+Route::get('/list/{slug}', [ListController::class, 'details'])->middleware(['auth'])->name('list');
+Route::get('/list/product/{product}', [ProductController::class])->middleware(['auth'])->name('product.list');
+
+//new list
 Route::get('/list_new', [ListController::class, 'new'])->middleware(['auth'])->name('list.new');
 Route::post('/list_new', [ListController::class, 'create'])->middleware(['auth'])->name('list.create');
 
-Route::get('/profile_edit', function () {
-    return view('users.profile_edit');
-})->middleware(['auth'])->name('profile.edit');
+//edit list
+Route::get('/list_edit/{list}', [ListController::class, 'edit'])->middleware(['auth'])->name('list.edit');
+Route::post('/list_edit/{list}', [ListController::class, 'change'])->middleware(['auth'])->name('list.change');
 
-Route::get('/list_edit', function () {
-    return view('users.list_edit');
-})->middleware(['auth'])->name('list.edit');
+//edit profile
+Route::get('/profile_edit', [UserController::class, 'edit'])->middleware(['auth'])->name('profile.edit');
+Route::post('/profile_edit', [UserController::class, 'change'])->middleware(['auth'])->name('profile.change');
 
+//shop
 Route::get('/shop/{category}', [ProductController::class, 'show'])->middleware(['auth'])->name('shop');
 Route::get('/shop/product/{product}', [ProductController::class, 'detail'])->middleware(['auth'])->name('product.shop');
-
-Route::get('/productdetaillist', function () {
-    return view('users.productDetail_list');
-})->middleware(['auth'])->name('product.list');
-
-Route::get('/list', function () {
-    return view('users.list');
-})->middleware(['auth'])->name('list');
+Route::post('/shop/product/add', [ListController::class, 'store'])->middleware(['auth'])->name('product.add');
 
 
-
+//
 //AUTHENTICATION
+//
 Route::get('/register', function () {
     return view('register');
 })->name('auth.register');
@@ -58,15 +64,16 @@ Route::get('/login', function () {
     return view('login');
 })->name('auth.login');
 
-
+//
 //GUESTS
+//
 Route::get('/listlogin', function () {
     return view('guests.list-login');
 })->name('list.login');
 
 Route::get('/list', function () {
     return view('guests.list');
-})->name('list');
+})->name('guests.list');
 
 Route::get('/productdetaillist', function () {
     return view('guests.productDetail_list');
@@ -77,7 +84,9 @@ Route::get('/message', function () {
 })->name('message');
 
 
+//
 //ADMIN
+//
 Route::get('/scraper', [ScrapeController::class, 'show'])->name('scraper');
 Route::post('/scrape/categories', [ScrapeController::class, 'scrapeCategories'])->name('scrape.categories');
 Route::post('/scrape/articles', [ScrapeController::class, 'scrapeArticles'])->name('scrape.articles');

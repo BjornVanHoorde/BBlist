@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('list_product', function (Blueprint $table) {
+        Schema::create('list_products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('list_id')->constrained();
             $table->foreignId('product_id')->constrained();
-            $table->text('contributor_object');
+            $table->text('contributor_object')->nullable()->default(null);
             $table->timestamps();
         });
     }

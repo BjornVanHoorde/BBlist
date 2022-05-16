@@ -18,6 +18,14 @@
         <a href="{{ URL::previous() }}">{{ __('Go back') }}</a>
     </div>
 
+    @if (session('status'))
+    <x-validation.success/>
+    @endif
+
+    @if ($errors->any())
+        <x-validation.errors :errors='$errors'/>
+    @endif
+
     <x-product-details :product='$product' />
 
     <x-add-to-list-box :lists='$lists' :product='$product' />

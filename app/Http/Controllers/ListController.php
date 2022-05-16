@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\List_product;
 use App\Models\Lists;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use stdClass;
 
 class ListController extends Controller
 {
@@ -22,6 +25,22 @@ class ListController extends Controller
         $lists = Lists::where('user_id', Auth::id())->orderBY('name', 'ASC')->get();
 
         return view('users.dashboard', compact('title', 'lists'));
+    }
+
+    public function details($slug) {
+        $list = Lists::where('slug', $slug)->first();
+        $title = $list->name;
+        $products = Product::select('products.*', 'images.alt', 'images.path', 'list_products.contributor_object', Product::raw('shops.name as shopName'))
+        ->join("images", "images.product_id", "=", "products.id")
+        ->join("shops", "shops.id", "=", "products.shop_id")
+        ->join("list_products", "list_products.product_id", "=", "products.id")
+        ->where('list_id', $list->id)
+        ->orderBy('products.name', 'ASC')
+        ->get();
+
+        $amounts = $this->getAmounts($products);
+
+        return view('users.list', compact('title', 'list', 'products', 'amounts'));
     }
 
     public function create(Request $r) {
@@ -47,6 +66,50 @@ class ListController extends Controller
         return redirect()->route('dashboard');
     }
 
+    public function store(Request $r) {
+        $r->validate([
+            'product' => 'required|exists:products,id',
+            'lists' => 'required',
+        ]);
+
+        $lists = Lists::where('user_id', Auth::id())->whereIn('name',$r->lists)->get();
+
+        foreach ($lists as $list) {
+            $listEnitity = new List_product();
+            $listEnitity->list_id = $list->id;
+            $listEnitity->product_id = $r->product;
+            $listEnitity->contributor_object = null;
+            $listEnitity->save();
+        }
+
+        return redirect()->back()->with('status', __('Product sucessfully added') );
+    }
+
+    public function edit($slug) {
+        $list = Lists::where('slug', $slug)->first();
+        $title = $list->name;
+
+        return view('users.list_edit', compact('title', 'list'));
+    }
+
+    public function change(Request $r, $slug) {
+        $r->validate([
+            'nameOfChild' => 'required|max:255',
+            'genderOfChild' => 'required|in:boy,girl,neutral',
+            'description' => 'required',
+            'photoChild' => 'image|required|max:2000|mimes:png,jpg,gif,jpeg',
+        ]);
+
+        $listEntity = Lists::where('slug', $slug)->first();
+        $listEntity->name = $r->nameOfChild;
+        $listEntity->gender = $r->genderOfChild;
+        $listEntity->description = $r->description;
+        $listEntity->image = $this->storeImage($r->photoChild);
+        $listEntity->save();
+
+        return redirect()->route('list', $slug);
+    }
+
     private function storeImage($image) {
         // get extension
         $ext = $image->getClientOriginalExtension();
@@ -64,5 +127,29 @@ class ListController extends Controller
         $fileSystem->putFileAs($filePath, $image, $randomName);
 
         return $fullPath;
+    }
+
+    private function getAmounts($products) {
+        $totalAmount = count($products);
+        $boughtAmount = 0;
+        $totalCost = 0.00;
+        $boughtCost = 0.00;
+
+        foreach ($products as $product) {
+            $totalCost = (float)$totalCost + (float)str_replace(',', '.', str_replace(' ', '',$product->price));
+
+            if ($product->contributor_object !== null) {
+                $boughtCost = (float)$boughtCost + (float)str_replace(',', '.', str_replace(' ', '',$product->price));
+                $boughtAmount = $boughtAmount + 1;
+            }
+        }
+
+        $amounts = new stdClass();
+        $amounts->totalAmount = $totalAmount;
+        $amounts->boughtAmount = $boughtAmount;
+        $amounts->totalCost = $totalCost;
+        $amounts->boughtCost = $boughtCost;
+
+        return $amounts;
     }
 }

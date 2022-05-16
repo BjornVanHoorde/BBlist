@@ -37,4 +37,17 @@ header {
             transform: scale(1.2);
         }
     }
+
+    .fa-pen-to-square {
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
+        cursor: pointer;
+        color: vars.$highlight-color;
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+
 }

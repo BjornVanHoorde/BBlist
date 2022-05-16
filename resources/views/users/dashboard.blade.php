@@ -33,7 +33,7 @@
             <div class="lists">
 
                 @foreach ($lists as $list)
-                    <a href="">
+                    <a href="{{ route('list', $list->slug) }}">
                         <div class="list {{ $list->gender }}">
                             <h3>{{ $list->name }}</h3>
                             <img src="{{ url('storage/' . $list->image) }}" alt="{{ $list->name . '.png' }}">

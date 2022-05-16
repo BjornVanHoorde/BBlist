@@ -17,6 +17,10 @@ body {
 
 img {
   width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center center;
+     object-position: center center;
 }
 
 /*
@@ -104,6 +108,16 @@ header img {
   cursor: pointer;
 }
 header img:hover {
+  transform: scale(1.2);
+}
+header .fa-pen-to-square {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  cursor: pointer;
+  color: #FF8E3C;
+}
+header .fa-pen-to-square:hover {
   transform: scale(1.2);
 }
 

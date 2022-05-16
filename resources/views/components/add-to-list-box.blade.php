@@ -1,7 +1,8 @@
 <div class="hide" id="list-choices">
     <div class="list-choice">
         <h2 class="text-center">{{ __('My lists') }}</h2>
-        <form action="">
+        <form action="{{ route('product.add') }}" method="POST">
+            @csrf
 
             @foreach ($lists as $list)
                 <x-list-choice :list='$list'/>
