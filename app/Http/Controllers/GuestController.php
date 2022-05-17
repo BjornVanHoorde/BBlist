@@ -83,10 +83,15 @@ class GuestController extends Controller
         $guest = Guest::where('guest_key', $key)->first();
         $list = Lists::where('slug', $slug)->first();
 
-        $listGuest = Guest_list::where('guest_id', $guest->id)
-            ->where('list_id', $list->id)
-            ->where('expires_at', '>=', now())
-            ->first();
+        $listGuest = null;
+
+        if ($guest) {
+            $listGuest = Guest_list::where('guest_id', $guest->id)
+                ->where('list_id', $list->id)
+                ->where('expires_at', '>=', now())
+                ->first();
+        }
+
 
         if ($listGuest) return true;
         return false;
