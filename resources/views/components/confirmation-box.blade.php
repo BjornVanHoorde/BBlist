@@ -1,14 +1,11 @@
 <div class="hide" id="choice-box">
     <div class="choice-box">
-        <h2 class="text-center">{{ __('My lists') }}</h2>
-        <form action="{{ route('product.add') }}" method="POST">
+        <h2 class="text-center">{{ __('Are you sure?') }}</h2>
+        <form action="{{ route('list.delete') }}" method="POST">
             @csrf
+            @method('DELETE')
 
-            @foreach ($lists as $list)
-                <x-list-choice :list='$list'/>
-            @endforeach
-
-            <input type="hidden" name="product" value="{{ $product->id }}">
+            <input type="hidden" name="list" value="{{ $list->id }}">
 
             <div class="button">
                 <button type="submit">{{ __('Confirm') }}</button>

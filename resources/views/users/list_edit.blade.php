@@ -62,11 +62,13 @@
             <button type="submit">{{ __('Edit list') }}</button>
         </div>
 
-        <div class="link text-center">
-            <a href="">{{ __('Delete list') }}</a>
-        </div>
-
     </form>
+
+    <div class="link text-center">
+        <a id="choice-btn">{{ __('Delete list') }}</a>
+    </div>
+
+    <x-confirmation-box :list="$list" />
 
 
 @endsection

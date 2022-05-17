@@ -4,7 +4,7 @@
 
 @use '../abstracts/variables' as vars;
 
-#list-choices {
+#choice-box {
     background-color: vars.$choice-background-color;
     z-index: 98;
     position: fixed;
@@ -14,7 +14,7 @@
     left: 0;
 }
 
-.list-choice {
+.choice-box {
     z-index: 99;
     position: fixed;
     top: 20vh;

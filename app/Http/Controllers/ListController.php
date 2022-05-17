@@ -110,6 +110,10 @@ class ListController extends Controller
         return redirect()->route('list', $slug);
     }
 
+    public function delete(Request $r) {
+        dd($r->all());
+    }
+
     private function storeImage($image) {
         // get extension
         $ext = $image->getClientOriginalExtension();

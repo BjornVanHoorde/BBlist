@@ -24,8 +24,8 @@
 @use 'components/flash-message';
 @use 'components/product-card';
 @use 'components/product-detail';
-@use 'components/list-choice';
 @use 'components/list-card';
+@use 'components/choice_box';
 
 //6. Page-Specific
 @use 'pages/authPages';

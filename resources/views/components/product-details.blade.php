@@ -9,7 +9,7 @@
     <p>{{ $product->description }}</p>
 
     <div class="button">
-        <button id="add-to-list">{{ __('Add to list') }}</button>
+        <button id="choice-btn">{{ __('Add to list') }}</button>
     </div>
 
     <div class="link text-center">

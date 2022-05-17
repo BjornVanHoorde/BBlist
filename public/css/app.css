@@ -23,6 +23,10 @@ img {
      object-position: center center;
 }
 
+a {
+  cursor: pointer;
+}
+
 /*
 *   Typography
 */
@@ -442,50 +446,6 @@ header .fa-pen-to-square:hover {
 }
 
 /*
-*   Box for choosing lists
-*/
-#list-choices {
-  background-color: rgba(239, 240, 243, 0.75);
-  z-index: 98;
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-}
-
-.list-choice {
-  z-index: 99;
-  position: fixed;
-  top: 20vh;
-  width: 80%;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  background-color: #FFF;
-  padding: 1rem 2rem;
-}
-.list-choice .checkbox {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
-  margin-top: 1rem;
-  border-radius: 1rem;
-}
-.list-choice .checkbox.boy {
-  background-color: #BAE8E8;
-}
-.list-choice .checkbox.girl {
-  background-color: #FF8BA7;
-}
-.list-choice .checkbox.neutral {
-  background-color: #FFD803;
-}
-.list-choice a {
-  cursor: pointer;
-}
-
-/*
 *   List card
 */
 .lists a {
@@ -511,6 +471,50 @@ header .fa-pen-to-square:hover {
 }
 .lists a .list:hover img {
   filter: none;
+}
+
+/*
+*   Box for choosing lists
+*/
+#choice-box {
+  background-color: rgba(239, 240, 243, 0.75);
+  z-index: 98;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.choice-box {
+  z-index: 99;
+  position: fixed;
+  top: 20vh;
+  width: 80%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 1rem 2rem;
+}
+.choice-box .checkbox {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 1rem;
+}
+.choice-box .checkbox.boy {
+  background-color: #BAE8E8;
+}
+.choice-box .checkbox.girl {
+  background-color: #FF8BA7;
+}
+.choice-box .checkbox.neutral {
+  background-color: #FFD803;
+}
+.choice-box a {
+  cursor: pointer;
 }
 
 /*

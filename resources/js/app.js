@@ -4,9 +4,9 @@ const menu = document.getElementById('menu');
 const menuBtn = document.getElementById('menu-btn');
 const closeMenuBtn = document.getElementById('close-menu-button');
 const outsideMenu = document.getElementById('outside-menu');
-const addToList = document.getElementById('add-to-list');
+const choiceBtn = document.getElementById('choice-btn');
 const cancelChoice = document.getElementById('cancel-choice');
-const listChoices = document.getElementById('list-choices');
+const choiceBox = document.getElementById('choice-box');
 
 menuBtn.addEventListener('click', function() {
     menu.className = '';
@@ -23,10 +23,10 @@ outsideMenu.addEventListener('click', function() {
     outsideMenu.className = 'hide';
 });
 
-addToList.addEventListener('click', function() {
-    listChoices.className = '';
+choiceBtn.addEventListener('click', function() {
+    choiceBox.className = '';
 });
 
 cancelChoice.addEventListener('click', function() {
-    listChoices.className = 'hide';
+    choiceBox.className = 'hide';
 });

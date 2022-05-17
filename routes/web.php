@@ -33,7 +33,9 @@ Route::get('/categories/{category}', [CategoryController::class, 'show'])->middl
 
 //list
 Route::get('/list/{slug}', [ListController::class, 'details'])->middleware(['auth'])->name('list');
-Route::get('/list/product/{product}', [ProductController::class])->middleware(['auth'])->name('product.list');
+Route::delete('/list/delete', [ListController::class, 'delete'])->middleware(['auth'])->name('list.delete');
+Route::get('/list/product/{product}', [ProductController::class, 'product'])->middleware(['auth'])->name('product.list');
+Route::delete('/list/product/delete/{product}', [ProductController::class, 'productDelete'])->middleware(['auth'])->name('product.list.delete');
 
 //new list
 Route::get('/list_new', [ListController::class, 'new'])->middleware(['auth'])->name('list.new');
