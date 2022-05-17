@@ -33,7 +33,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories');
 
     //list
-    // Route::get('/list/{slug}', [ListController::class, 'details'])->name('list');
     Route::get('/lists/{slug}', [ListController::class, 'details'])->name('list');
     Route::delete('/list/delete', [ListController::class, 'delete'])->name('list.delete');
     Route::get('/list/{slug}/product/{product}', [ProductController::class, 'listProduct'])->name('product.list');
@@ -74,18 +73,13 @@ Route::middleware(['guest'])->group(function () {
 
     //guests
     Route::get('/list/{slug}', [GuestController::class, 'loginShow'])->name('list.login');
+    Route::post('/list/{slug}', [GuestController::class, 'login'])->name('guest.login');
 
-    Route::get('/list', function () {
-        return view('guests.list');
-    })->name('guests.list');
+    Route::get('/guest/list/{slug}', [GuestController::class, 'list'])->name('guests.list');
 
-    Route::get('/productdetaillist', function () {
-        return view('guests.productDetail_list');
-    })->name('guest.product.list');
+    Route::get('/guest/list/{slug}/product/{product}', [GuestController::class, 'product'])->name('guest.product.list');
 
-    Route::get('/message', function () {
-        return view('guests.message');
-    })->name('message');
+    Route::get('guest/list/{slug}/message', [GuestController::class, 'message'])->name('guest.message');
 });
 
 

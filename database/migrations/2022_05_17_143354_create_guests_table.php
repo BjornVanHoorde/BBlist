@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('guests', function (Blueprint $table) {
             $table->id();
             $table->text('guest_key');
-            $table->timestamp('expires_at');
             $table->timestamps();
         });
     }

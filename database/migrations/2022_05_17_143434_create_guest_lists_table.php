@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('guest_id')->constrained();
             $table->foreignId('list_id')->constrained();
+            $table->timestamp('expires_at');
+            $table->timestamps();
         });
     }
 

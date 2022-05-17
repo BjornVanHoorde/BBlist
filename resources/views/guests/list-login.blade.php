@@ -8,7 +8,7 @@
         <x-validation.errors :errors='$errors'/>
     @endif
 
-    <form method="POST" action="">
+    <form method="POST" action="{{ route('guest.login', $list->slug) }}">
         @csrf
 
         <p>{{ __('Fill in the password you have received from the parents to access the list') }}</p>
