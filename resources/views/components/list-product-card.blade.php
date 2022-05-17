@@ -1,4 +1,4 @@
-<a class="product-card" href="{{ route('product.list') }}">
+<a class="product-card" href="{{ route('product.list', [$list->slug, $product->id]) }}">
     <div class="product">
         <div class="image">
             <img src="{{ url('/storage/' . $product->path) }}" alt="{{ $product->alt }}">

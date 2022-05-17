@@ -111,7 +111,21 @@ class ListController extends Controller
     }
 
     public function delete(Request $r) {
-        dd($r->all());
+        $r->validate([
+            'list' => 'required|exists:lists,id',
+        ]);
+
+
+        $list = Lists::findOrFail($r->list);
+        $list_products = List_product::where('list_id', $r->list)->get();
+
+        foreach ($list_products as $product) {
+            $product->delete();
+        }
+
+        $list->delete();
+
+        return redirect()->route('dashboard')->with('status', __('Successfully deleted list'));
     }
 
     private function storeImage($image) {

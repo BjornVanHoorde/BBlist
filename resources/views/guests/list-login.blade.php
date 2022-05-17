@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Lijst Jonas</h1>
+    <h1>{{ __('List') . ' ' . $list->name}}</h1>
 
     @if ($errors->any())
         <x-validation.errors :errors='$errors'/>

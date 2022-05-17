@@ -15,4 +15,13 @@
         <h5>{{ __('There are') }} <span>{{ $amounts->boughtAmount }}</span> {{ __('of the') }} <span>{{ $amounts->totalAmount }}</span> {{ __('products bought') }}</h5>
         <h5>{{ __('There is') }} <span>€ {{ $amounts->boughtCost }}</span> {{ __('of the') }} <span>€ {{ $amounts->totalCost}}</span> {{ __('spend') }}</h5>
     </div>
+
+    <br>
+    <hr>
+    <br>
+
+    <div class="list-link">
+        <p class="text-center">{{ __('Your personal link is:') }}</p>
+        <p class="text-center">{{ URL::current() }}</p>
+    </div>
 </div>

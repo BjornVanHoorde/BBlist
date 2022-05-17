@@ -18,7 +18,7 @@
 
     <div class="products">
         @foreach ($products as $product)
-            <x-list-product-card :product="$product" />
+            <x-list-product-card :product="$product" :list="$list"/>
         @endforeach
     </div>
 
