@@ -30,13 +30,15 @@ class ListController extends Controller
     public function details($slug) {
         $list = Lists::where('slug', $slug)->first();
         $title = $list->name;
-        $products = Product::select('products.*', 'images.alt', 'images.path', 'list_products.contributor_object', Product::raw('shops.name as shopName'))
+        $products = Product::select('products.*', 'images.alt', 'images.path', 'list_products.order_id', Product::raw('shops.name as shopName'), 'orders.message', Product::raw('orders.name as contrName'))
         ->join("images", "images.product_id", "=", "products.id")
         ->join("shops", "shops.id", "=", "products.shop_id")
         ->join("list_products", "list_products.product_id", "=", "products.id")
+        ->join("orders", "orders.id", "=", "list_products.order_id", 'left outer')
         ->where('list_id', $list->id)
         ->orderBy('products.name', 'ASC')
         ->get();
+
 
         $amounts = $this->getAmounts($products);
 
@@ -78,7 +80,7 @@ class ListController extends Controller
             $listEnitity = new List_product();
             $listEnitity->list_id = $list->id;
             $listEnitity->product_id = $r->product;
-            $listEnitity->contributor_object = null;
+            $listEnitity->order_id = null;
             $listEnitity->save();
         }
 
@@ -156,7 +158,7 @@ class ListController extends Controller
         foreach ($products as $product) {
             $totalCost = (float)$totalCost + (float)str_replace(',', '.', str_replace(' ', '',$product->price));
 
-            if ($product->contributor_object !== null) {
+            if ($product->order_id !== null) {
                 $boughtCost = (float)$boughtCost + (float)str_replace(',', '.', str_replace(' ', '',$product->price));
                 $boughtAmount = $boughtAmount + 1;
             }

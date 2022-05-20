@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Guest;
 use App\Models\Guest_list;
+use App\Models\List_product;
 use App\Models\Lists;
+use App\Models\Order;
 use App\Models\Product;
 use Carbon\Carbon;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
@@ -34,14 +36,15 @@ class GuestController extends Controller
     }
 
     public function list($slug) {
-        if(!$this->checkIfAuthorized($slug)) return redirect()->back();
+        if(!$this->checkIfAuthorized($slug)) return redirect()->route('list.login', $slug);
 
         $list = Lists::where('slug', $slug)->first();
         $title = $list->name;
-        $products = Product::select('products.*', 'images.alt', 'images.path', 'list_products.contributor_object', Product::raw('shops.name as shopName'))
+        $products = Product::select('products.*', 'images.alt', 'images.path', 'list_products.order_id', Product::raw('shops.name as shopName'), 'orders.message', Product::raw('orders.name as contrName'))
         ->join("images", "images.product_id", "=", "products.id")
         ->join("shops", "shops.id", "=", "products.shop_id")
         ->join("list_products", "list_products.product_id", "=", "products.id")
+        ->join("orders", "orders.id", "=", "list_products.order_id", 'left outer')
         ->where('list_id', $list->id)
         ->orderBy('products.name', 'ASC')
         ->get();
@@ -52,13 +55,16 @@ class GuestController extends Controller
     }
 
     public function product($slug, $productId) {
-        if(!$this->checkIfAuthorized($slug)) return redirect()->back();
+        if(!$this->checkIfAuthorized($slug)) return redirect()->route('list.login', $slug);
 
         $list = Lists::where('slug', $slug)->first();
         $title = $list->name;
-        $product = Product::select('products.*', 'images.alt', 'images.path', Product::raw('shops.name as shopName'))
+        $product = Product::select('products.*', 'images.alt', 'images.path', 'list_products.order_id', Product::raw('shops.name as shopName'), 'orders.message', Product::raw('orders.name as contrName'))
         ->join("images", "images.product_id", "=", "products.id")
         ->join("shops", "shops.id", "=", "products.shop_id")
+        ->join("list_products", "list_products.product_id", "=", "products.id")
+        ->join("orders", "orders.id", "=", "list_products.order_id", 'left outer')
+        ->where('list_id', $list->id)
         ->where('products.id', $productId)
         ->first();
 
@@ -66,7 +72,7 @@ class GuestController extends Controller
     }
 
     public function message($slug) {
-        if(!$this->checkIfAuthorized($slug)) return redirect()->back();
+        if(!$this->checkIfAuthorized($slug)) return redirect()->route('list.login', $slug);
 
         $list = Lists::where('slug', $slug)->first();
         $title = $list->name;
@@ -136,7 +142,7 @@ class GuestController extends Controller
         foreach ($products as $product) {
             $totalCost = (float)$totalCost + (float)str_replace(',', '.', str_replace(' ', '',$product->price));
 
-            if ($product->contributor_object !== null) {
+            if ($product->order_id !== null) {
                 $boughtCost = (float)$boughtCost + (float)str_replace(',', '.', str_replace(' ', '',$product->price));
                 $boughtAmount = $boughtAmount + 1;
             }

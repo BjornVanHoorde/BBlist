@@ -3,11 +3,13 @@
 use App\Http\Controllers\Admin\ScrapeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\Head_categoryController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebhooksController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -84,7 +86,11 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/guest/list/{slug}/shoppingcart', [CartController::class, 'show'])->name('guest.shoppingcart');
     Route::delete('/guest/shoppingcart/delete', [CartController::class, 'delete'])->name('guest.shoppingcart.delete');
 
-    Route::get('guest/list/{slug}/message', [GuestController::class, 'message'])->name('guest.message');
+    Route::get('/guest/list/{slug}/message', [GuestController::class, 'message'])->name('guest.message');
+    Route::get('/guest/list/{slug}/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
+    Route::get('/guest/list/{slug}/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+
+    Route::post('/webhooks/mollie', [WebhooksController::class, 'handle'])->name('webhooks.mollie');
 });
 
 

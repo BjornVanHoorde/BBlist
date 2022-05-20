@@ -7,10 +7,10 @@
             <h4>{{ $product->name }}</h4>
             <h5>{{ $product->shopName }}</h5>
             <h2>€ {{ $product->price }}</h2>
-            @if ($product->contributor_object === null)
+            @if ($product->order_id === null)
                 <small>{{ __('Not yet purchased') }}</small>
             @else
-                <small>{{ __('Purchased by') }}</small>
+                <small>{{ __('Purchased by') . ' ' . $product->contrName }} <i class="fa-solid fa-circle-check"></i></small>
             @endif
         </div>
     </div>

@@ -43,9 +43,12 @@ class ProductController extends Controller
     public function listProduct($slug, $productId) {
         $list = Lists::where('slug', $slug)->first();
         $title = $list->name;
-        $product = Product::select('products.*', 'images.alt', 'images.path', Product::raw('shops.name as shopName'))
+        $product = Product::select('products.*', 'images.alt', 'images.path', 'list_products.order_id', Product::raw('shops.name as shopName'), 'orders.message', Product::raw('orders.name as contrName'))
         ->join("images", "images.product_id", "=", "products.id")
         ->join("shops", "shops.id", "=", "products.shop_id")
+        ->join("list_products", "list_products.product_id", "=", "products.id")
+        ->join("orders", "orders.id", "=", "list_products.order_id", 'left outer')
+        ->where('list_id', $list->id)
         ->where('products.id', $productId)
         ->first();
 

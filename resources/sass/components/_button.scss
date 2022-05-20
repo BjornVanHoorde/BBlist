@@ -16,6 +16,16 @@
         &:hover {
             filter: opacity(0.75);
         }
+
+        &:disabled {
+            color: vars.$black;
+            background-color: vars.$gray;
+            cursor: auto;
+
+            &:hover {
+                filter: opacity(1);
+            }
+        }
     }
 
     a {

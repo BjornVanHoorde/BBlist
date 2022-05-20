@@ -8,14 +8,21 @@
 
     <p>{{ $product->description }}</p>
 
-    <form action="{{ route('guest.product.list.add', $list->slug) }}" method="POST">
-        @csrf
-        <input type="hidden" name="product" value="{{ $product->id }}">
-        <input type="hidden" name="list" value="{{ $list->slug }}">
+    @if ($product->order_id === null)
+        <form action="{{ route('guest.product.list.add', $list->slug) }}" method="POST">
+            @csrf
+            <input type="hidden" name="product" value="{{ $product->id }}">
+            <input type="hidden" name="list" value="{{ $list->slug }}">
+            <div class="button">
+                <button type="submit">{{ __('Add to cart') }}</button>
+            </div>
+        </form>
+    @else
         <div class="button">
-            <button type="submit">{{ __('Add to cart') }}</button>
+            <button disabled="disabled">{{ __('This product is already bought') }}</button>
         </div>
-    </form>
+    @endif
+
 
     <div class="link text-center">
         <a target="_blank" href="{{ url($product->url) }}">{{ __('Check out this product on the official website') }}</a>

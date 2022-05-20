@@ -14,8 +14,7 @@
 
     <h2>{{ __('Leave a message to the parents') }}</h2>
 
-    <form method="POST" action="">
-        @csrf
+    <form method="GET" action="{{ route('checkout', $list->slug) }}">
 
         <div class="field">
             <label for="name">{{ __('Name') }}</label>
@@ -25,13 +24,13 @@
         <!-- Password -->
         <div class="field">
             <label for="message">{{ __('Message') }}</label>
-            <textarea name="message" id="message" cols="30" rows="8"></textarea>
+            <textarea name="message" id="message" cols="30" rows="8" required></textarea>
         </div>
 
         <h3>{{ __('Amount:') . ' € ' . $total}}</h3>
 
         <div class="button">
-            <button type="submit">{{ __('Pay') }}</button>
+            <button>{{ __('Pay') }}</button>
         </div>
     </form>
 

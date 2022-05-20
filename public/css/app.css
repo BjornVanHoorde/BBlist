@@ -288,6 +288,14 @@ header .fa-pen-to-square:hover, header .fa-cart-shopping:hover, header .fa-list:
 .button button:hover {
   filter: opacity(0.75);
 }
+.button button:disabled {
+  color: #000;
+  background-color: #707070;
+  cursor: auto;
+}
+.button button:disabled:hover {
+  filter: opacity(1);
+}
 .button a {
   display: block;
   color: #0D0D0D;

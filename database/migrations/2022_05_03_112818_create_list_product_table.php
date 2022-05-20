@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('list_id')->constrained();
             $table->foreignId('product_id')->constrained();
-            $table->text('contributor_object')->nullable()->default(null);
+            $table->foreignId('order_id')->nullable()->default(null);
             $table->timestamps();
         });
     }
