@@ -14,7 +14,12 @@
 
 @section('content')
 
+    <div class="link bannerlink">
+        <a href="{{ route('dashboard') }}">{{ __('Go back') }}</a>
+    </div>
+
     <x-list-info :list="$list" :amounts="$amounts"/>
+    <x-list-link :list="$list"/>
 
     <div class="products">
         @foreach ($products as $product)

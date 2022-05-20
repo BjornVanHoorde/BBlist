@@ -49,7 +49,7 @@
     "Fill in the password you have received from the parents to access the list": "Voer hier het wachtwoord in gekregen van de ouders om wo toegang te krijgen tot de lijst",
     "Get access": "Krijg toegang",
     "Buy this product": "Koop dit product",
-    "Leave a message to the parents": "Laat een boodschap achter voor de parents",
+    "Leave a message to the parents": "Laat een boodschap achter voor de ouders",
     "Go to payment": "Ga naar betaling",
     "Buy another product": "Koop een ander product",
     "There are no products available at the moment": "Er zijn geen producten beschikbaar op dit moment",
@@ -64,6 +64,11 @@
     "Delete this product": "Verwijder dit product",
     "Your personal link is:": "Jouw persoonlijke link is:",
     "List": "Lijst",
+    "Add to cart": "Voeg toe aan winkelwagen",
+    "Successfully added to cart": "Succesvol toegevoegd aan winkelwagen",
+    "There are no products in your cart": "Er zitten geen producten in jouw winkelwagen",
+    "Pay": "Betaal",
+    "Amount:": "Bedrag:",
 
 
     "30 Days": "30 dagen",

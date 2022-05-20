@@ -1,7 +1,4 @@
 <div class="list-info">
-    <div class="link bannerlink">
-        <a href="{{ route('dashboard') }}">{{ __('Go back') }}</a>
-    </div>
 
     <div class="banner">
         <img src="{{ url('storage/' . $list->image ) }}" alt="baby1.png">
@@ -20,8 +17,4 @@
     <hr>
     <br>
 
-    <div class="list-link">
-        <p class="text-center">{{ __('Your personal link is:') }}</p>
-        <p class="text-center">{{ URL::current() }}</p>
-    </div>
 </div>

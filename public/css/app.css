@@ -114,14 +114,14 @@ header img {
 header img:hover {
   transform: scale(1.2);
 }
-header .fa-pen-to-square {
+header .fa-pen-to-square, header .fa-cart-shopping, header .fa-list {
   position: absolute;
   right: 0.5rem;
   top: 0.5rem;
   cursor: pointer;
   color: #FF8E3C;
 }
-header .fa-pen-to-square:hover {
+header .fa-pen-to-square:hover, header .fa-cart-shopping:hover, header .fa-list:hover {
   transform: scale(1.2);
 }
 
@@ -424,6 +424,14 @@ header .fa-pen-to-square:hover {
 }
 .product-card .product .description small .fa-circle-check {
   color: #4BB543;
+}
+.product-card .product .description button {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  border: none;
+  background-color: transparent;
+  color: #FF4C4C;
 }
 
 /*

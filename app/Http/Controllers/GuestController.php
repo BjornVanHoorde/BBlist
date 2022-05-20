@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Guest;
 use App\Models\Guest_list;
 use App\Models\Lists;
+use App\Models\Product;
 use Carbon\Carbon;
+use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use stdClass;
 
 class GuestController extends Controller
 {
@@ -32,17 +35,44 @@ class GuestController extends Controller
 
     public function list($slug) {
         if(!$this->checkIfAuthorized($slug)) return redirect()->back();
-        dd('list done');
+
+        $list = Lists::where('slug', $slug)->first();
+        $title = $list->name;
+        $products = Product::select('products.*', 'images.alt', 'images.path', 'list_products.contributor_object', Product::raw('shops.name as shopName'))
+        ->join("images", "images.product_id", "=", "products.id")
+        ->join("shops", "shops.id", "=", "products.shop_id")
+        ->join("list_products", "list_products.product_id", "=", "products.id")
+        ->where('list_id', $list->id)
+        ->orderBy('products.name', 'ASC')
+        ->get();
+
+        $amounts = $this->getAmounts($products);
+
+        return view('guests.list', compact('title', 'list', 'products', 'amounts'));
     }
 
-    public function product($slug) {
+    public function product($slug, $productId) {
         if(!$this->checkIfAuthorized($slug)) return redirect()->back();
-        dd('product done');
+
+        $list = Lists::where('slug', $slug)->first();
+        $title = $list->name;
+        $product = Product::select('products.*', 'images.alt', 'images.path', Product::raw('shops.name as shopName'))
+        ->join("images", "images.product_id", "=", "products.id")
+        ->join("shops", "shops.id", "=", "products.shop_id")
+        ->where('products.id', $productId)
+        ->first();
+
+        return view('guests.productDetail_list', compact('title', 'list', 'product'));
     }
 
     public function message($slug) {
         if(!$this->checkIfAuthorized($slug)) return redirect()->back();
-        dd('message done');
+
+        $list = Lists::where('slug', $slug)->first();
+        $title = $list->name;
+        $total = Cart::session($this->getCartKey($slug))->getTotal();
+
+        return view('guests.message', compact('title', 'list', 'total'));
     }
 
     private function makeGuestKey($listId) {
@@ -95,5 +125,33 @@ class GuestController extends Controller
 
         if ($listGuest) return true;
         return false;
+    }
+
+    private function getAmounts($products) {
+        $totalAmount = count($products);
+        $boughtAmount = 0;
+        $totalCost = 0.00;
+        $boughtCost = 0.00;
+
+        foreach ($products as $product) {
+            $totalCost = (float)$totalCost + (float)str_replace(',', '.', str_replace(' ', '',$product->price));
+
+            if ($product->contributor_object !== null) {
+                $boughtCost = (float)$boughtCost + (float)str_replace(',', '.', str_replace(' ', '',$product->price));
+                $boughtAmount = $boughtAmount + 1;
+            }
+        }
+
+        $amounts = new stdClass();
+        $amounts->totalAmount = $totalAmount;
+        $amounts->boughtAmount = $boughtAmount;
+        $amounts->totalCost = $totalCost;
+        $amounts->boughtCost = $boughtCost;
+
+        return $amounts;
+    }
+
+    private function getCartKey($slug) {
+        return session()->get('_token') . $slug;
     }
 }

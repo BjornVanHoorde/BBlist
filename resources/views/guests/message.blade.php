@@ -2,7 +2,7 @@
 
 @section('header')
 
-    <x-static.guest-header title="Home" />
+    <x-static.guest-cart-header :title="$title" :gender="$list->gender" :slug="$list->slug"/>
 
 @endsection
 
@@ -28,14 +28,13 @@
             <textarea name="message" id="message" cols="30" rows="8"></textarea>
         </div>
 
+        <h3>{{ __('Amount:') . ' € ' . $total}}</h3>
+
         <div class="button">
-            <button type="submit">{{ __('Go to payment') }}</button>
+            <button type="submit">{{ __('Pay') }}</button>
         </div>
     </form>
 
-    <div class="link text-center">
-        <a href="">{{ __('Buy another product') }}</a>
-    </div>
 
 
 @endsection

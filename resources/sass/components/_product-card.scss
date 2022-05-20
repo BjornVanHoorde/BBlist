@@ -43,6 +43,15 @@
                     color: vars.$success-color;
                 }
             }
+
+            button {
+                position: absolute;
+                top: 0;
+                right: 1rem;
+                border: none;
+                background-color: transparent;
+                color: vars.$error-color;
+            }
         }
     }
 }

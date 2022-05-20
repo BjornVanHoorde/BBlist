@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ScrapeController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\Head_categoryController;
@@ -78,6 +79,10 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/guest/list/{slug}', [GuestController::class, 'list'])->name('guests.list');
 
     Route::get('/guest/list/{slug}/product/{product}', [GuestController::class, 'product'])->name('guest.product.list');
+    Route::post('/guest/list/{slug}/product/add', [CartController::class, 'add'])->name('guest.product.list.add');
+
+    Route::get('/guest/list/{slug}/shoppingcart', [CartController::class, 'show'])->name('guest.shoppingcart');
+    Route::delete('/guest/shoppingcart/delete', [CartController::class, 'delete'])->name('guest.shoppingcart.delete');
 
     Route::get('guest/list/{slug}/message', [GuestController::class, 'message'])->name('guest.message');
 });
