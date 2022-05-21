@@ -48,6 +48,10 @@
             <a class="text-center" href="{{ route('list.new') }}"><i class="fa-solid fa-plus"></i></a>
         </div>
 
+        @if (session('status'))
+        <x-validation.success/>
+        @endif
+
     </div>
 
 

@@ -32,6 +32,6 @@ class UserController extends Controller
         $user->email = $r->email;
         $user->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('status', __('Successfully edited profile'));
     }
 }

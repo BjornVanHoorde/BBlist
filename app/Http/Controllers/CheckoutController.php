@@ -15,6 +15,11 @@ use stdClass;
 class CheckoutController extends Controller
 {
     public function checkout(Request $r, $slug) {
+        $r->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'message' => 'required',
+        ]);
 
         $cart = Cart::session($this->getCartKey($slug));
         $total = (string)$cart->getTotal();

@@ -1,4 +1,4 @@
 
-<div class="flash success">
+<div class="flash success" id="flash">
     {{ session('status') }}
 </div>

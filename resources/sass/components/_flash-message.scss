@@ -6,7 +6,7 @@
 
 .flash {
     color: vars.$white;
-    padding: 5px 2px;
+    padding: 0.5rem;
     border-radius: 1rem;
 
     li {
@@ -19,5 +19,9 @@
 
     &.success {
         background-color: vars.$success-color;
+        position: fixed;
+        bottom: 2rem;
+        width: 90%;
+        text-align: center;
     }
 }

@@ -119,7 +119,7 @@ header .fa-pen-to-square, header .fa-cart-shopping, header .fa-list {
   right: 0.5rem;
   top: 0.5rem;
   cursor: pointer;
-  color: #FF8E3C;
+  color: #000;
 }
 header .fa-pen-to-square:hover, header .fa-cart-shopping:hover, header .fa-list:hover {
   transform: scale(1.2);
@@ -385,7 +385,7 @@ header .fa-pen-to-square:hover, header .fa-cart-shopping:hover, header .fa-list:
 */
 .flash {
   color: #FFF;
-  padding: 5px 2px;
+  padding: 0.5rem;
   border-radius: 1rem;
 }
 .flash li {
@@ -396,6 +396,10 @@ header .fa-pen-to-square:hover, header .fa-cart-shopping:hover, header .fa-list:
 }
 .flash.success {
   background-color: #4BB543;
+  position: fixed;
+  bottom: 2rem;
+  width: 90%;
+  text-align: center;
 }
 
 /*
@@ -403,6 +407,23 @@ header .fa-pen-to-square:hover, header .fa-cart-shopping:hover, header .fa-list:
 */
 .product-card {
   text-decoration: none;
+}
+.product-card .space {
+  height: 1.5rem;
+  background-color: #FFF;
+  position: relative;
+}
+.product-card .space button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  border: none;
+  background-color: transparent;
+  color: #FF4C4C;
+  cursor: pointer;
+}
+.product-card .space button:hover {
+  transform: scale(1.2);
 }
 .product-card .product {
   display: grid;
@@ -432,14 +453,6 @@ header .fa-pen-to-square:hover, header .fa-cart-shopping:hover, header .fa-list:
 }
 .product-card .product .description small .fa-circle-check {
   color: #4BB543;
-}
-.product-card .product .description button {
-  position: absolute;
-  top: 0;
-  right: 1rem;
-  border: none;
-  background-color: transparent;
-  color: #FF4C4C;
 }
 
 /*
@@ -603,6 +616,11 @@ header .fa-pen-to-square:hover, header .fa-cart-shopping:hover, header .fa-list:
   color: #FF8E3C;
 }
 
+.list-link {
+  cursor: pointer;
+  text-align: center;
+}
+
 /*
 *   Scraper page
 */
@@ -632,4 +650,30 @@ header .fa-pen-to-square:hover, header .fa-cart-shopping:hover, header .fa-list:
 }
 .categories td {
   padding: 0.5rem 0;
+}
+
+/*
+*   Message page
+*/
+.message-container {
+  margin-top: 1rem;
+}
+.message-container .amount {
+  margin-top: 1rem;
+}
+
+/*
+*   Success page
+*/
+.success-container {
+  margin-top: 15rem;
+}
+.success-container .text i {
+  color: #4BB543;
+}
+.success-container .text h2 {
+  margin-top: 1rem;
+}
+.success-container .link {
+  margin-top: 2rem;
 }

@@ -65,7 +65,7 @@ class ListController extends Controller
         $listEntity->user_id = Auth::id();
         $listEntity->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('status', __('Successfully created list'));
     }
 
     public function store(Request $r) {
@@ -109,7 +109,7 @@ class ListController extends Controller
         $listEntity->image = $this->storeImage($r->photoChild);
         $listEntity->save();
 
-        return redirect()->route('list', $slug);
+        return redirect()->route('list', $slug)->with('status', __('Successfully edited list'));
     }
 
     public function delete(Request $r) {

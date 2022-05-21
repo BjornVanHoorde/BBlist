@@ -21,10 +21,24 @@
     <x-list-info :list="$list" :amounts="$amounts"/>
     <x-list-link :list="$list"/>
 
-    <div class="products">
-        @foreach ($products as $product)
-            <x-list-product-card :product="$product" :list="$list"/>
-        @endforeach
-    </div>
+    @if (count($products) > 0)
+        <div class="products">
+            @foreach ($products as $product)
+                <x-list-product-card :product="$product" :list="$list"/>
+            @endforeach
+        </div>
+    @else
+        <div class="products">
+            <h3 class="text-center">{{ __('There are no products on your list') }}</h3>
+            <div class="button">
+                <a class="text-center" href="{{ route('headCategories') }}">{{ __('Add some here') }}</a>
+            </div>
+        </div>
+    @endif
+
+
+    @if (session('status'))
+    <x-validation.success/>
+    @endif
 
 @endsection

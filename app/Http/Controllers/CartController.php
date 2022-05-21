@@ -12,6 +12,12 @@ use Darryldecode\Cart\Facades\CartFacade as Cart;
 class CartController extends Controller
 {
     public function add(Request $r) {
+        $r->validate([
+            'product' => 'required|exists:products,id',
+            'list' => 'required|exists:lists,slug',
+        ]);
+
+
         $product = Product::findOrFail($r->product);
 
         Cart::session($this->getCartKey($r->slug))->add(array(
@@ -49,6 +55,11 @@ class CartController extends Controller
     }
 
     public function delete(Request $r) {
+        $r->validate([
+            'product' => 'required|exists:products,id',
+            'list' => 'required|exists:lists,slug',
+        ]);
+
         Cart::session($this->getCartKey($r->list))->remove($r->product);
         return redirect()->back();
     }

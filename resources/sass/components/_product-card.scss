@@ -7,6 +7,26 @@
 .product-card {
     text-decoration: none;
 
+    .space {
+        height: 1.5rem;
+        background-color: vars.$white;
+        position: relative;
+
+        button {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            border: none;
+            background-color: transparent;
+            color: vars.$error-color;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
+
     .product {
         display: grid;
         grid-template-columns: 40% 60%;
@@ -42,15 +62,6 @@
                 .fa-circle-check {
                     color: vars.$success-color;
                 }
-            }
-
-            button {
-                position: absolute;
-                top: 0;
-                right: 1rem;
-                border: none;
-                background-color: transparent;
-                color: vars.$error-color;
             }
         }
     }
