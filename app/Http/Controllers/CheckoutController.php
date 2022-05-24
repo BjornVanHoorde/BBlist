@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\sendContributorMail;
+use App\Mail\sendOrderConfirmation;
 use App\Models\List_product;
 use App\Models\Lists;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\User;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Mollie\Laravel\Facades\Mollie;
 use stdClass;
 
@@ -28,6 +33,7 @@ class CheckoutController extends Controller
         $order = new Order();
         $order->name = $r->name;
         $order->message = $r->message;
+        $order->email = $r->email;
         $order->total = $total;
         $order->status = 'pending';
         $order->save();
@@ -67,6 +73,20 @@ class CheckoutController extends Controller
                 "order_from" => $order->name,
             ],
         ]);
+
+
+        $list_productsIds = List_product::select('product_id')->where('order_id', $order->id)->get()->toArray();
+        $products = Product::select('products.*', 'images.alt', 'images.path', Product::raw('shops.name as shopName'))
+            ->join("images", "images.product_id", "=", "products.id")
+            ->join("shops", "shops.id", "=", "products.shop_id")
+            ->whereIn('id', $list_productsIds);
+
+        Mail::to($order->email)->send(new sendOrderConfirmation($order, $products, $list));
+
+        $list_user = User::findOrFail($list->user_id);
+
+        Mail::to($list_user->email)->send(new sendContributorMail($order, $products, $list));
+
 
         // redirect customer to Mollie checkout page
         return redirect($payment->getCheckoutUrl(), 303);

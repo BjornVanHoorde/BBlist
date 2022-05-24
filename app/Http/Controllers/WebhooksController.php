@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\sendContributorMail;
+use App\Mail\sendOrderConfirmation;
 use App\Models\List_product;
 use App\Models\Lists;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\User;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Mollie\Laravel\Facades\Mollie;
 
 class WebhooksController extends Controller
