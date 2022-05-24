@@ -97,9 +97,11 @@ Route::middleware(['guest'])->group(function () {
 //
 //ADMIN
 //
-Route::get('/scraper', [ScrapeController::class, 'show'])->name('scraper');
-Route::post('/scrape/categories', [ScrapeController::class, 'scrapeCategories'])->name('scrape.categories');
-Route::post('/scrape/articles', [ScrapeController::class, 'scrapeArticles'])->name('scrape.articles');
+Route::middleware(['admin'])->group(function () {
+    Route::get('/scraper', [ScrapeController::class, 'show'])->name('scraper');
+    Route::post('/scrape/categories', [ScrapeController::class, 'scrapeCategories'])->name('scrape.categories');
+    Route::post('/scrape/articles', [ScrapeController::class, 'scrapeArticles'])->name('scrape.articles');
+});
 
 
 require __DIR__.'/auth.php';
