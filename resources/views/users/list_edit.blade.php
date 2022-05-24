@@ -2,7 +2,7 @@
 
 @section('header')
 
-    <x-static.header :title="$title" />
+<x-static.list-header :title="$title" :gender="$list->gender" :slug="$list->slug"/>
 
 @endsection
 
@@ -35,15 +35,15 @@
             <div class="radio-container">
                 <div class="radio">
                     <label for="boy">{{ __('Boy') }}</label>
-                    <input type="radio" name="genderOfChild" id="boy" value="boy" required>
+                    <input type="radio" name="genderOfChild" id="boy" value="boy" required @if ($list->gender === 'boy') checked @endif>
                 </div>
                 <div class="radio">
                     <label for="girl">{{ __('Girl') }}</label>
-                    <input type="radio" name="genderOfChild" id="girl" value="girl" required>
+                    <input type="radio" name="genderOfChild" id="girl" value="girl" required @if ($list->gender === 'girl') checked @endif>
                 </div>
                 <div class="radio">
                     <label for="neutral">{{ __('Neutral') }}</label>
-                    <input type="radio" name="genderOfChild" id="neutral" value="neutral" required>
+                    <input type="radio" name="genderOfChild" id="neutral" value="neutral" required @if ($list->gender === 'neutral') checked @endif>
                 </div>
             </div>
         </div>
@@ -55,7 +55,8 @@
 
         <div class="field">
             <label for="photoChild">{{ __('Photo of the child') }}</label>
-            <input type="file" id="photoChild" name="photoChild" value="{{ url('/storage/' . $list->image) }}" required>
+            <label for="photoChild"><small>{{ __('Leave this empty if you don\'t want to change the image') }}</small></label>
+            <input type="file" id="photoChild" name="photoChild" value="{{ url('/storage/' . $list->image) }}">
         </div>
 
         <div class="button">

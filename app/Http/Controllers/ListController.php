@@ -101,14 +101,16 @@ class ListController extends Controller
             'nameOfChild' => 'required|max:255',
             'genderOfChild' => 'required|in:boy,girl,neutral',
             'description' => 'required',
-            'photoChild' => 'image|required|max:2000|mimes:png,jpg,gif,jpeg',
+            'photoChild' => 'image|max:2000|mimes:png,jpg,gif,jpeg',
         ]);
 
         $listEntity = Lists::where('slug', $slug)->first();
         $listEntity->name = $r->nameOfChild;
         $listEntity->gender = $r->genderOfChild;
         $listEntity->description = $r->description;
-        $listEntity->image = $this->storeImage($r->photoChild);
+        if ($r->photoChild) {
+            $listEntity->image = $this->storeImage($r->photoChild);
+        }
         $listEntity->save();
 
         return redirect()->route('list', $slug)->with('status', __('Successfully edited list'));
