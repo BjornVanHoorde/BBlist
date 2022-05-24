@@ -19,6 +19,11 @@
             <a href="{{ route('headCategories') }}">{{ __('Go back') }}</a>
         </div>
     @endif
+    @if ($headCategories)
+        <div class="link">
+            <a href="{{ route('dashboard') }}">{{ __('Go back') }}</a>
+        </div>
+    @endif
 
     <div class="categories">
         @if ($headCategories)

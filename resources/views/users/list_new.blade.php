@@ -14,6 +14,10 @@
 
 @section('content')
 
+    <div class="link">
+        <a href="{{ route('dashboard') }}">{{ __('Go back') }}</a>
+    </div>
+
     <form action="{{ route('list.create') }}" method="POST" enctype="multipart/form-data">
         @csrf
 

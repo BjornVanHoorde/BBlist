@@ -34,10 +34,11 @@ class ProductController extends Controller
         ->join("shops", "shops.id", "=", "products.shop_id")
         ->where('products.id', $productId)
         ->first();
+        $category = Category::findOrFail($product->category_id)->name;
 
         $lists = Lists::where('user_id', Auth::id())->orderBy('name', 'ASC')->get();
 
-        return view('users.productDetail_shop', compact('title', 'product', 'lists'));
+        return view('users.productDetail_shop', compact('title', 'product', 'lists', 'category'));
     }
 
     public function listProduct($slug, $productId) {

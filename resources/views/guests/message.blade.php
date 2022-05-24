@@ -9,7 +9,7 @@
 @section('content')
 
     <div class="link">
-        <a href="">{{ __('Go back') }}</a>
+        <a href="{{ route('guest.shoppingcart', $list->slug) }}">{{ __('Go back') }}</a>
     </div>
 
     <div class="message-container">

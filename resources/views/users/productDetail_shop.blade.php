@@ -15,7 +15,7 @@
 @section('content')
 
     <div class="link">
-        <a href="{{ URL::previous() }}">{{ __('Go back') }}</a>
+        <a href="{{ route('shop', $category) }}">{{ __('Go back') }}</a>
     </div>
 
     @if ($errors->any())

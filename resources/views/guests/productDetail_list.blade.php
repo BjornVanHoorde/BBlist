@@ -10,7 +10,7 @@
 @section('content')
 
     <div class="link">
-        <a href="{{ URL::previous() }}">{{ __('Go back') }}</a>
+        <a href="{{ route('guests.list', $list->slug) }}">{{ __('Go back') }}</a>
     </div>
 
     <x-guest-product-details :product='$product' :list="$list"/>

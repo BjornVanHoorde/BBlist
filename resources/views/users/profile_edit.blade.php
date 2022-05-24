@@ -15,7 +15,7 @@
 @section('content')
 
     <div class="link">
-        <a href="{{ URL::previous() }}">{{ __('Go back') }}</a>
+        <a href="{{ route('dashboard') }}">{{ __('Go back') }}</a>
     </div>
 
     <form action="{{ route('profile.change') }}" method="POST">

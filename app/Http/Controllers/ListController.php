@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guest;
+use App\Models\Guest_list;
 use App\Models\List_product;
 use App\Models\Lists;
 use App\Models\Product;
@@ -120,9 +122,13 @@ class ListController extends Controller
 
         $list = Lists::findOrFail($r->list);
         $list_products = List_product::where('list_id', $r->list)->get();
+        $list_guests = Guest_list::where('list_id', $list->id)->get();
 
         foreach ($list_products as $product) {
             $product->delete();
+        }
+        foreach ($list_guests as $guest) {
+            $guest->delete();
         }
 
         $list->delete();
