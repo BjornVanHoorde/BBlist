@@ -25,16 +25,23 @@
 
     @if (count($products) > 0)
     <p class='text-center' >{{ count($products) . ' ' . __('products') }}</p>
+
+    <form class="filter" action="{{ route('shop', $category) }}">
         <div class="field">
             <div class="select">
-                <label for="price">{{ __('Price') }}</label>
-                <select name="price" id="price">
+                <label for="filter">{{ __('Filter') }}</label>
+                <select name="filter" id="filter">
                     <option value=""> - </option>
-                    <option value="low">{{ __('Low to high') }}</option>
-                    <option value="high">{{ __('High to low') }}</option>
+                    <option value="low" @if ($filter === 'low') selected @endif>{{ __('Low to high') }}</option>
+                    <option value="high" @if ($filter === 'high') selected @endif>{{ __('High to low') }}</option>
                 </select>
             </div>
         </div>
+        <div class="button">
+            <button type="submit">{{ __('Search') }}</button>
+        </div>
+    </form>
+
         <div class="products">
 
             @foreach ($products as $product)

@@ -12,19 +12,34 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    public function show($category) {
+    public function show(Request $r, $category) {
+
         $title = ucfirst($category);
+        $filter = '';
         $categoryId = Category::where('pathname', $category)->first()->id;
         $headCategoryId = Category::where('pathname', $category)->first()->head_category_id;
         $headCategory = Head_category::where('id', $headCategoryId)->first()->name;
         $products = Product::select('products.*', 'images.alt', 'images.path', Product::raw('shops.name as shopName'))
         ->join("images", "images.product_id", "=", "products.id")
         ->join("shops", "shops.id", "=", "products.shop_id")
-        ->where('category_id', $categoryId)
-        ->orderBy('name', 'ASC')
-        ->get();
+        ->where('category_id', $categoryId);
 
-        return view('users.shop', compact('title', 'products', 'headCategory'));
+        switch ($r->filter) {
+            case 'low':
+                $products = $products->orderBy('price', 'ASC')->get();
+                $filter = 'low';
+                break;
+            case 'high':
+                $products = $products->orderBy('price', 'DESC')->get();
+                $filter = 'high';
+                break;
+            default:
+                $products = $products->orderBy('name', 'ASC')->get();
+                break;
+        }
+
+
+        return view('users.shop', compact('title', 'products', 'headCategory', 'category', 'filter'));
     }
 
     public function detail($productId) {

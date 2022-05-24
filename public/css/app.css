@@ -547,6 +547,18 @@ header .fa-pen-to-square:hover, header .fa-cart-shopping:hover, header .fa-list:
 }
 
 /*
+* Filter
+*/
+.filter .field .select label {
+  display: block;
+}
+.filter .field .select select {
+  width: 100%;
+  height: 2rem;
+  display: block;
+}
+
+/*
 *   All authentication pages
 */
 .banner-logo {
