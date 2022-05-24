@@ -42,3 +42,8 @@ When you want to deploy this application locally, you will have to keep these st
 - Don't forget to make a database on your own
 - If you've create a database then you can do `php artisan migrate`
 - `php artisan serve` and watch the magic happen
+
+
+## Author
+
+Bjorn Van Hoorde
